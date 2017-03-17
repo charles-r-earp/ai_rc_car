@@ -15,4 +15,4 @@ target_sources(control INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/include/control.hpp
 target_link_libraries(control INTERFACE wiringPi crypt pthread m rt)
 
 add_executable(test_servo tests/test_servo.cpp)
-target_link_libraries(servo_control control)
+target_link_libraries(test_servo control)
