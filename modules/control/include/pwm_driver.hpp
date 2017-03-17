@@ -141,9 +141,12 @@ namespace control {
             prescaleval /= freq_hz;
             prescaleval -= 1.0;
         //logger.debug('Setting PWM frequency to {0} Hz'.format(freq_hz))
+            std::cout << "Setting PWM frequency to " << freq_hz <<  " Hz" << std::endl; 
         //logger.debug('Estimated pre-scale: {0}'.format(prescaleval))
+            std::cout << "Estimated pre-scale: " << prescaleval << std::endl; 
             int prescale = int(std::floor(prescaleval + 0.5));
             //logger.debug('Final pre-scale: {0}'.format(prescale))
+            std::cout << "Final pre-scale: " << prescale << std::endl;
             int oldmode = this->read(MODE1);
             int newmode = (oldmode & 0x7F) | 0x10;    // sleep
             this->write(MODE1, newmode);  // go to sleep
