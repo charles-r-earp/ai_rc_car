@@ -10,7 +10,7 @@ int main() {
     control::pwm_driver::servo servo;
     
     
-    x = 0.5;
+    double x = 0.5;
     
     while (true) {
         
