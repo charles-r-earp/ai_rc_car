@@ -81,10 +81,10 @@ namespace control {
         
         // Registers/etc:
         int PCA9685_ADDRESS = 0x40;
-        int MODE1  = 0x00;
+        int MODE1 = 0x00;
         int MODE2 = 0x01;
         int SUBADR1 = 0x02;
-        int SUBADR2 = 0x03
+        int SUBADR2 = 0x03;
         int SUBADR3 = 0x04;
         int PRESCALE = 0xFE;
         int LED0_ON_L = 0x06;
