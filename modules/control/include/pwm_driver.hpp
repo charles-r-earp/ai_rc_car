@@ -12,7 +12,7 @@
 #include <cassert>
 #include <string>
 #include <iostream>
-#include <vector>
+#include <cmath>
 
 namespace control {
     
@@ -99,9 +99,9 @@ namespace control {
             
             this->sleep();
             
-            this->write(PCA9685_PRESCALE, (25*1000000/(4096*update_rate)) - 1);
+            this->write(PCA9685_PRESCALE, std::round(25000000/(4096*update_rate)) - 1);
             int val = this->read(PCA9685_PRESCALE);
-            int rate = ((1 + val) * 4096)/25000000;
+            int rate = 25000000/((1 + val) * 4096);
             
             std::cout << "pwm update_frequency = " << rate << std::endl;
             
