@@ -80,7 +80,7 @@ namespace control {
     struct pwm_driver : i2c_device {
         
         // Registers/etc:
-        int PCA9685_ADDRESS = 0x40
+        int PCA9685_ADDRESS = 0x40;
         int MODE1  = 0x00;
         int MODE2 = 0x01;
         int SUBADR1 = 0x02;
