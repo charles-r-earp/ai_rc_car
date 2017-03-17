@@ -1,6 +1,10 @@
 #ifndef AI_RC_CAR_CONTROL_PWM_DRIVER_HPP
 #define AI_RC_CAR_CONTROL_PWM_DRIVER_HPP
 
+#include <linux/i2c-dev.h>
+#include <string>
+#include <iostream>
+
 namespace control {
     
     struct i2c_device {
@@ -51,7 +55,7 @@ namespace control {
             
             return i2c_smbus_read_word_data(file, reg);
         }
-    }
+    };
 
     // Adafruit P815
     
