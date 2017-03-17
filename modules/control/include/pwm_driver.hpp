@@ -107,6 +107,11 @@ namespace control {
             
         }
         
+        void setDuty(const int& num, const int& duty) {
+            
+            this->write(LED0_ON_L+4*num, duty);
+        }
+        
         
     };
 }
