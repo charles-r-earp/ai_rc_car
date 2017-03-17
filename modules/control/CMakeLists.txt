@@ -2,12 +2,13 @@
 
 add_library(control INTERFACE)
 
-target_sources(control INTERFACE control.hpp)
 target_include_directories(control INTERFACE include)
 
-find_library(wiringPi wiringPi4 /usr/local/include /usr/local/lib)
+target_sources(control INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/include/control.hpp)
 
-target_link_libraries(control INTERFACE wiringPi)
+#find_library(wiringPi wiringPi4 /usr/local/include /usr/local/lib)
+
+#target_link_libraries(control INTERFACE wiringPi)
 
 add_executable(servo_control tests/servo_control.cpp)
 target_link_libraries(servo_control control)
