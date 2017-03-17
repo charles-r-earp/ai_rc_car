@@ -5,14 +5,14 @@
 #include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>*/
-//#include <cstddef>
+#include <cstddef> // define NULL
 #include <linux/i2c-dev.h>
 /*#include <sys/ioctl.h>
-#include <fcntl.h>
+#include <fcntl.h>*/
 #include <cassert>
 #include <string>
-#include <iostream>*/
-/*
+#include <iostream>
+
 namespace control {
     
     
@@ -85,7 +85,7 @@ namespace control {
         
         
     };
-}*/
+}
 
 
 
