@@ -29,7 +29,7 @@ namespace control {
             
             if (file < 0) {
                 
-                std::cout << "i2c_device() error = " << file << std::endl;
+                std::cout << "i2c_device() error = " << errno << std::endl;
                 
                 abort();
             }
