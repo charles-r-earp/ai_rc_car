@@ -135,12 +135,12 @@ namespace control {
         void set_duty(const int& num, const double& duty) {
             // duty is fraction on
             
-            this->write(LED0_ON_L+4*num, duty*SCALE);
-            
+            this->write(LED0_ON_L+4*num, 1);
+            this->write(LED0_ON_H+4*num, SCALE);
             this->write(LED0_OFF_L+4*num, 0);
             this->write(LED0_OFF_H+4*num, 0);
             
-            this->write(LED0_ON_H+4*num, SCALE);
+            
             
         }
         
