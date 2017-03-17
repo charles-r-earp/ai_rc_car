@@ -2,6 +2,9 @@
 #define AI_RC_CAR_CONTROL_PWM_DRIVER_HPP
 
 #include <linux/i2c-dev.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 #include <string>
 #include <iostream>
 
