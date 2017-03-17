@@ -2,6 +2,7 @@
 #define AI_RC_CAR_CONTROL_PWM_DRIVER_HPP
 
 #include <linux/i2c-dev.h>
+#include <sys/ioctl.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
@@ -18,7 +19,7 @@ namespace control {
         
         i2c_device(const int& address, const std::string device = "/dev/i2c-1") {
             
-            file = open(device, O_RDWR);
+            file = open(device.c_str(), O_RDWR);
             
             if (file < 0) {
                 
