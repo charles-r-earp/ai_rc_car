@@ -8,7 +8,7 @@ int main() {
     
     control::pwm_driver pwm_driver;
     
-    pwm_driver.set_duty(0, 0.01);
+    pwm_driver.set_duty(0, 0.1);
     
     int x = 0;
     
