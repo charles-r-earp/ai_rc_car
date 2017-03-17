@@ -79,6 +79,8 @@ namespace control {
             
             assert(this->check_address());
             
+            this->write(reg);
+            
             return i2c_smbus_read_word_data(file, reg);
         }
         
