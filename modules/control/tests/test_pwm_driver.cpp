@@ -10,7 +10,7 @@ int main() {
     
     int x;
     
-    while(x < 10) {
+    while(x++ < 40) {
         
         //pwm_driver.setPWM(0, 100, 1000);
         
