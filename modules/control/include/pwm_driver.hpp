@@ -8,12 +8,22 @@
 #include <cassert>
 #include <string>
 #include <iostream>
+#include <sstream>
 #include <cmath>
 
 #include <thread>
 #include <chrono> 
 
 namespace control {
+    
+    std::string decimal_to_hex(int decimal_value) {
+        
+        std::stringstream ss;
+        ss << std::hex << decimal_value; // int decimal_value
+        std::string res ( ss.str() );
+
+        std::cout << res;
+    }
     
     struct i2c_device {
         
@@ -63,7 +73,7 @@ namespace control {
             
             i2c_smbus_write_word_data(this->file, reg, value);
             
-            std::cout << "Wrote " << value << " to register: " << reg << std::endl;
+            std::cout << "Wrote " << decimal_to_hex(value) << " to register: " << decimal_to_hex(reg) << std::endl;
         }
         
         int read(const int& reg) {
