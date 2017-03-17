@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-#include <wiringPi.h>
+//#include <wiringPi.h>
 
 #define WIRINGPI_CODES 
 
@@ -11,7 +11,7 @@ namespace control {
 
     struct servo {
         
-        servo() {
+        /*servo() {
             
             this->setup();
         }
@@ -23,7 +23,7 @@ namespace control {
             std::cout << "servo_control setup()... error_code = " << error_code << std::endl; 
             
             return error_code;
-        }
+        }*/
     };
 }
 
