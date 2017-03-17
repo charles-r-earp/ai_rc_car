@@ -129,8 +129,6 @@ namespace control {
             
             this->write(LED0_ON_L+4*num, x);
             this->write(LED0_ON_H+4*num, SCALE);
-            this->write(LED0_OFF_L+4*num, SCALE-x);
-            this->write(LED0_OFF_H+4*num, 0);
             
         }
         
@@ -138,9 +136,8 @@ namespace control {
             // duty is fraction on
             
             this->write(LED0_ON_L+4*num, duty*SCALE);
-            this->write(LED0_ON_H+4*num, SCALE);
-            this->write(LED0_OFF_L+4*num, (1-duty)*SCALE);
-            this->write(LED0_OFF_H+4*num, 0);
+            this->write(LED0_ON_H+4*num, 1);
+            
         }
         
         
