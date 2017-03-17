@@ -8,6 +8,9 @@ int main() {
     
     control::pwm_driver pwm_driver;
     
+    pwm_driver.write(6, 1000);
+    pwm_driver.write(8, 0);
+    
     int x;
     
     while(x++ < 40) {
@@ -20,6 +23,8 @@ int main() {
         
         std::chrono::seconds(1);
     }
+    
+    
     
     return 0;
 }
