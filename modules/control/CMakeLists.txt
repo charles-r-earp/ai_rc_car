@@ -1,9 +1,12 @@
 add_library(control INTERFACE)
-#target_sources(control INTERFACE control.hpp)
-#include_directories(include)
 
-#find_library(wiringPi wiringPi /usr/local/include /usr/local/lib)
+target_include_directories(control INTERFACE include)
 
-#target_link_libraries(control wiringPi)
+target_sources(control INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/include/control.hpp)
 
-add_subdirectory(tests)
+#target_link_libraries(control INTERFACE)
+
+add_executable(test_pwm_driver tests/test_pwm_driver.cpp)
+target_link_libraries(test_pwm_driver control)
+
+
