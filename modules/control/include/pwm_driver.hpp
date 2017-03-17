@@ -191,7 +191,7 @@ namespace control {
             int prescale = int(std::floor(prescaleval + 0.5));
             //logger.debug('Final pre-scale: {0}'.format(prescale))
             std::cout << "Final pre-scale: " << prescale << std::endl;
-            int oldmode = this->read8(MODE1);
+            int oldmode = this->read_U8(MODE1);
             int newmode = (oldmode & 0x7F) | 0x10;    // sleep
             this->write8(MODE1, newmode);  // go to sleep
             this->write8(PRESCALE, prescale);
