@@ -4,7 +4,7 @@ find_library(wiringPi_LIBRARIES wiringPi /usr/local/lib)
 message("wiringPi_LIBRARIES path: ${wiringPi_LIBRARIES}\n")
 
 find_path(wiringPi_INCLUDE_DIRS wiringPi/wiringPi.h /usr/local/include)
-message("wiringPi_LIBRARIES path: ${wiringPi_LIBRARIES}\n")
+message("wiringPi_INCLUDE_DIRS path: ${wiringPi_LIBRARIES}\n")
 
 target_include_directories(control INTERFACE include wiringPi_INCLUDE_DIRS)
 
