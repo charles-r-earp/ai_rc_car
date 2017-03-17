@@ -12,7 +12,7 @@ target_sources(control INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/include/control.hpp
 
 
 
-target_link_libraries(control INTERFACE ${wiringPi_LIBRARIES})
+target_link_libraries(control INTERFACE ${wiringPi_LIBRARIES} crypt)
 
 add_executable(servo_control tests/servo_control.cpp)
 target_link_libraries(servo_control control)
