@@ -108,7 +108,7 @@ namespace control {
             
             int channel;
             
-            servo(int channel) {
+            servo(int channel = 0) {
             
                 this->channel = channel;
             }
