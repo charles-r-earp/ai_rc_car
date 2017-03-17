@@ -204,7 +204,7 @@ namespace control {
         
         void set_ratio(const servo& s, double ratio) {
         
-            this->set_servo_pulse(s.channel, ratio*(s.max-s.min) + s.min);
+            this->set_pwm(s.channel, 0, ratio*(s.max-s.min) + s.min);
         }
         
     };
