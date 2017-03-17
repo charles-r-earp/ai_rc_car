@@ -76,8 +76,8 @@ namespace control {
         const static int PCA9685_PRESCALE = 0xFE;
         const static int LED0_ON_L = 0x6;
         const static int LED0_ON_H = 0x7;
-        const static int LED0_OFF_L 0x8;
-        const static int LED0_OFF_H 0x9;
+        const static int LED0_OFF_L = 0x8;
+        const static int LED0_OFF_H = 0x9;
         
         pwm_driver(const int address = 0x40) : i2c_device(address) {
         
