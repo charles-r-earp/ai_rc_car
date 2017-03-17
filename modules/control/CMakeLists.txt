@@ -6,4 +6,4 @@ find_library(wiringPi wiringPi4 /usr/local/include /usr/local/lib)
 
 target_link_libraries(control INTERFACE wiringPi)
 
-#add_subdirectory(tests)
+add_subdirectory(tests)
