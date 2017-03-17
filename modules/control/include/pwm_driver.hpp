@@ -75,6 +75,7 @@ namespace control {
     
     const static int PCA9685_MODE1 = 0x0;
     const static int PCA9685_PRESCALE = 0xFE;
+    const static int PCA9685_SLEEP_BIT = 4;
     const static int LED0_ON_L = 0x6;
     const static int LED0_ON_H = 0x7;
     const static int LED0_OFF_L = 0x8;
@@ -90,15 +91,32 @@ namespace control {
         
         
         
-        pwm_driver(const int address = 0x40) : i2c_device(address) {
+        pwm_driver(const int address = 0x40, const update_rate = 500) : i2c_device(address) {
         
             this->reset();
+            
+            
+            this->sleep();
+            
+            this->write(PCA9685_PRESCALE, update_rate);
+            
+            std::cout << "pwm update_frequency = " << this->read(PCA9685_PRESCALE, update_rate) << std::endl;
+            
+            this->sleep();
         }
         
         void reset() {
             
-            //this->write(PCA9685_MODE1, 0x0);
-            this->write(0x0, 0x0);
+            this->write(PCA9685_MODE1, 0x0);
+        }
+        
+        void sleep() {
+            
+            std::vector<bool> bits = this->read(PCA9685_MODE1);
+            
+            bits[PCA9685_SLEEP_BIT] = 1;
+            
+            this->write(PCA9685_MODE1, bits);
         }
         
         void set_width(const int& num, const double& sec) {
