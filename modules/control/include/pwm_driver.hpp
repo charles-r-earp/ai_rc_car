@@ -172,7 +172,7 @@ namespace control {
             
             auto mode1 = this->read_U8(MODE1);
             mode1 = mode1 & ~SLEEP;
-            this->write8(MODE1);
+            this->write8(MODE1, mode1);
             
             std::this_thread::sleep_for(std::chrono::milliseconds(5));
         }
