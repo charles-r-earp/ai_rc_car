@@ -6,6 +6,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
+#include <cassert>
 #include <string>
 #include <iostream>
 
@@ -48,7 +49,7 @@ namespace control {
         
         void write(const int& reg, const int& value) {
             
-            assert(this->check_address());
+            asert(this->check_address());
             
             i2c_smbus_write_word_data(this->file, reg, value);
         }
