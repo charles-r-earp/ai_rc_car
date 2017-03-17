@@ -1,2 +1,0 @@
-add_executable(servo_control servo_control.cpp)
-target_link_libraries(servo_control control)
