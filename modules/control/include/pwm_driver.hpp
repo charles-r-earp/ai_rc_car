@@ -92,7 +92,7 @@ namespace control {
         
         
         
-        pwm_driver(const int address = 0x40, const int update_rate = 500) : i2c_device(address) {
+        pwm_driver(const int address = 0x40, const int update_rate = 200) : i2c_device(address) {
         
             this->reset();
             
