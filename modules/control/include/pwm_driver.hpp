@@ -242,7 +242,7 @@ namespace control {
         
         void set_duty(int channel, double duty) {
         
-            this->set_pwm(channel, duty*4095);
+            this->set_pwm(channel, 0, duty*4095);
         }
         
     };
