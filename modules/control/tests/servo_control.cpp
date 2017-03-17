@@ -6,9 +6,7 @@
 
 int main () {
     
-    wiringPiSetup (); 
-
-    //control::servo servo;
+    control::servo servo;
     
     return 0;
 }
