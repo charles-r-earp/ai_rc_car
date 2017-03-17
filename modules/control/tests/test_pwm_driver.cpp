@@ -5,6 +5,8 @@ int main() {
     
     control::pwm_driver pwm_driver;
     
+    pwm_driver.set_pwm_freq(60);
+    
     control::pwm_driver::servo servo;
     
     while (true) {
