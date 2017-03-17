@@ -111,6 +111,8 @@ namespace control {
             
             this->write(LED0_ON_L+4*num);
             this->write(duty);
+            this->write(LED0_ON_H+4*num);
+            this->write(4095);
         }
         
         
