@@ -97,7 +97,7 @@ namespace control {
             this->reset();
             
             
-            this->sleep();
+            /*this->sleep();
             
             int val = std::round(25000000/(4096*update_rate)) - 1;
             
@@ -109,7 +109,7 @@ namespace control {
             
             std::cout << "prescale = " << val << " pwm update_frequency = " << rate << std::endl;
             
-            this->sleep();
+            this->sleep();*/
         }
         
         void reset() {
@@ -137,6 +137,7 @@ namespace control {
             
             this->write(LED0_ON_L+4*num, duty*SCALE);
             this->write(LED0_ON_H+4*num, 1);
+            this->write(LED0_OFF_H+4*num, 0);
             
         }
         
