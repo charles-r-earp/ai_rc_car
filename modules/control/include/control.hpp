@@ -18,7 +18,7 @@ namespace control {
     
         int setup() {
             
-            int error_code = wiringPiSetup (); 
+            int error_code = wiringPiSetup(); 
             
             std::cout << "servo_control setup()... error_code = " << error_code << std::endl; 
             
