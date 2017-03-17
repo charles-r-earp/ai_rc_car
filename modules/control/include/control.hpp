@@ -13,10 +13,7 @@ namespace control {
         
         const int pin;
         
-        led(const int pin = 0) {
-            
-            this->pin = pin;
-        }
+        led(const int pin = 0) : pin(pin) {}
         
         void set(bool on) {
             
