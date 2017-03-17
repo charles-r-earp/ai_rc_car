@@ -165,8 +165,8 @@ namespace control {
         pwm_driver(const int address = 0x40) : i2c_device(address) {
         
             this->set_all_pwm(0, 0);
-            this->write(MODE2, OUTDRV);
-            this->write(MODE1, ALLCALL);
+            this->write8(MODE2, OUTDRV);
+            this->write8(MODE1, ALLCALL);
             
             std::this_thread::sleep_for (std::chrono::milliseconds(5));
             
