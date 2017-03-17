@@ -12,7 +12,7 @@ int main() {
     
     int x;
     
-    while(x++ < FxEh) {
+    while(x++ < 100) {
         std::cout << x << " = " << pwm_driver.read(x) << std::endl;
     }
     
