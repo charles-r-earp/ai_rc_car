@@ -9,9 +9,9 @@
 
 namespace control {
 
-    struct servo_control {
+    struct servo {
         
-        servo_control() {
+        servo() {
             
             this->setup();
         }

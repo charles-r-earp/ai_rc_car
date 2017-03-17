@@ -6,8 +6,7 @@
 
 int main () {
 
-    
-    std::cout << "Hello World!" << std::endl;
+    control::servo servo;
     
     return 0;
 }
