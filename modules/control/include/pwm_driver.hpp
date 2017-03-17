@@ -113,11 +113,7 @@ namespace control {
         
         void sleep() {
             
-            std::vector<bool> bits = this->read(PCA9685_MODE1);
-            
-            bits[PCA9685_SLEEP_BIT] = 1;
-            
-            this->write(PCA9685_MODE1, bits);
+            this->write(PCA9685_MODE1 + PCA9685_SLEEP_BIT, 1 );
         }
         
         void set_width(const int& num, const double& sec) {
