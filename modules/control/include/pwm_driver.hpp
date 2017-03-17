@@ -90,7 +90,7 @@ namespace control {
             
             //this->write(reg);
             
-            int value = i2c_smbus_read_byte(file, reg);
+            int value = i2c_smbus_read_byte(file);
             
             std::cout << "Read " << decimal_to_hex(value) << " from register: " << decimal_to_hex(reg) << std::endl;
             
@@ -101,7 +101,7 @@ namespace control {
             
             assert(this->check_address());
             
-            this->write(reg);
+            //this->write(reg);
             
             int value = i2c_smbus_read_byte_data(file, reg);
             
