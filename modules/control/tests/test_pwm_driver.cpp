@@ -12,8 +12,9 @@ int main() {
     
     int x;
     
-    while(x++ < 100) {
+    while(true) {
         std::cout << x << " = " << pwm_driver.read(x) << std::endl;
+        ++x;
     }
     
     return 0;
