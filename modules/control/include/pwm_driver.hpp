@@ -100,7 +100,7 @@ namespace control {
             
             this->write(PCA9685_PRESCALE, update_rate);
             
-            std::cout << "pwm update_frequency = " << this->read(PCA9685_PRESCALE, update_rate) << std::endl;
+            std::cout << "pwm update_frequency = " << this->read(PCA9685_PRESCALE) << std::endl;
             
             this->sleep();
         }
