@@ -47,7 +47,7 @@ namespace control {
             
         }
         
-        void write(const u8& reg, const u16& value) {
+        void write(const int& reg, const int& value) {
             
             assert(this->check_address());
             
