@@ -73,6 +73,11 @@ namespace control {
     struct pwm_driver : i2c_device {
         
         const static int PCA9685_MODE1 = 0x0;
+        const static int PCA9685_PRESCALE = 0xFE;
+        const static int LED0_ON_L = 0x6;
+        const static int LED0_ON_H = 0x7;
+        const static int LED0_OFF_L 0x8;
+        const static int LED0_OFF_H 0x9;
         
         pwm_driver(const int address = 0x40) : i2c_device(address) {
         
@@ -81,7 +86,17 @@ namespace control {
         
         void reset() {
             
-            //this->write(PCA9685_MODE1, 0x0);
+            this->write(PCA9685_MODE1, 0x0);
+        }
+        
+        void setPWM(const int& num, const int& on, const int&off) {
+            
+            this->write(LED0_ON_L+4*num);
+            this->write(on);
+            this->write(on>>8);
+            this->write(off);
+            this->write(off>>8);
+            
         }
         
         
