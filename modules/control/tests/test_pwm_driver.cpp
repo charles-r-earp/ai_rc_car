@@ -10,17 +10,18 @@ int main() {
     control::pwm_driver::servo servo;
     
     pwm_driver.set_duty(15, 60);
-    /*
+    
+    
     while (true) {
         
-        pwm_driver.set_ratio(servo, 0);
+        //pwm_driver.set_ratio(servo, 0);
         
         std::this_thread::sleep_for(std::chrono::seconds(1));
         
-        pwm_driver.set_ratio(servo, 1);
+        //pwm_driver.set_ratio(servo, 1);
         
         std::this_thread::sleep_for(std::chrono::seconds(1));
-    }*/
+    }
     
     return 0;
 }
