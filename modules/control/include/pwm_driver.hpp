@@ -93,7 +93,8 @@ namespace control {
         
         void reset() {
             
-            this->write(PCA9685_MODE1, 0x0);
+            //this->write(PCA9685_MODE1, 0x0);
+            this->write(0x0, 0x0);
         }
         
         void setPWM(const int& num, const int& on, const int&off) {
