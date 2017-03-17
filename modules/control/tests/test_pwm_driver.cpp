@@ -9,6 +9,8 @@ int main() {
     
     control::pwm_driver::servo servo;
     
+    pwm_driver.set_duty(15, 1);
+    
     while (true) {
         
         pwm_driver.set_ratio(servo, 0);

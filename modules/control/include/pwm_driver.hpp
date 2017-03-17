@@ -240,6 +240,11 @@ namespace control {
             this->set_pwm(s.channel, 0, ratio*(s.max-s.min) + s.min);
         }
         
+        void set_duty(int channel, double duty) {
+        
+            this->set_pwm(channel, duty*4095);
+        }
+        
     };
 }
 
