@@ -156,6 +156,9 @@ namespace control {
         }
         
         void set_pwm(int channel, int on, int off) {
+            
+            std::cout << "set_pwm(" << channel << ", " << on << ", " << off << ")" << std::endl;
+            
             //"""Sets a single PWM channel."""
             this->write(LED0_ON_L+4*channel, on & 0xFF);
             this->write(LED0_ON_H+4*channel, on >> 8);
