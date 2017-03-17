@@ -79,7 +79,7 @@ namespace control {
     
     struct pwm_driver : i2c_device {
         
-        # Registers/etc:
+        // Registers/etc:
         int PCA9685_ADDRESS = 0x40
         int MODE1  = 0x00;
         int MODE2 = 0x01;
@@ -96,7 +96,7 @@ namespace control {
         int ALL_LED_OFF_L = 0xFC;
         int ALL_LED_OFF_H = 0xFD;
         
-        # Bits:
+        // Bits:
         int RESTART = 0x80;
         int SLEEP = 0x10;
         int ALLCALL = 0x01;
@@ -134,9 +134,9 @@ namespace control {
         }
         
         void set_pwm_freq(double freq_hz) {
-            """Set the PWM frequency to the provided value in hertz."""
-            double prescaleval = 25000000.0;    # 25MHz
-            prescaleval /= 4096.0;      # 12-bit
+            //"""Set the PWM frequency to the provided value in hertz."""
+            double prescaleval = 25000000.0;    // 25MHz
+            prescaleval /= 4096.0;     // 12-bit
             prescaleval /= freq_hz;
             prescaleval -= 1.0;
         //logger.debug('Setting PWM frequency to {0} Hz'.format(freq_hz))
@@ -144,18 +144,18 @@ namespace control {
             prescale = int(math.floor(prescaleval + 0.5))
             //logger.debug('Final pre-scale: {0}'.format(prescale))
             int oldmode = self._device.readU8(MODE1);
-            int newmode = (oldmode & 0x7F) | 0x10    # sleep
-            this->write(MODE1, newmode)  # go to sleep
-            this->write(PRESCALE, prescale)
-            this->write(MODE1, oldmode)
+            int newmode = (oldmode & 0x7F) | 0x10;    // sleep
+            this->write(MODE1, newmode);  // go to sleep
+            this->write(PRESCALE, prescale);
+            this->write(MODE1, oldmode);
                 
             std::this_thread::sleep_for (std::chrono::seconds(0.005));
             
-            this->write(MODE1, oldmode | 0x80)
+            this->write(MODE1, oldmode | 0x80);
         }
         
         void set_pwm(int channel, int on, int off) {
-            """Sets a single PWM channel."""
+            //"""Sets a single PWM channel."""
             this->write(LED0_ON_L+4*channel, on & 0xFF);
             this->write(LED0_ON_H+4*channel, on >> 8);
             this->write(LED0_OFF_L+4*channel, off & 0xFF);
@@ -163,7 +163,7 @@ namespace control {
         }
 
         void set_all_pwm(int on, int off) {
-            """Sets all PWM channels."""
+            //"""Sets all PWM channels."""
             this->write(ALL_LED_ON_L, on & 0xFF);
             this->write(ALL_LED_ON_H, on >> 8);
             this->write(ALL_LED_OFF_L, off & 0xFF);
@@ -171,7 +171,7 @@ namespace control {
         }
         
 
-        # Helper function to make setting a servo pulse width simpler.
+        // Helper function to make setting a servo pulse width simpler.
         void set_servo_pulse(int channel, int pulse) {
             pulse_length = 1000000;    # 1,000,000 us per second
             pulse_length /= 60;       # 60 Hz
