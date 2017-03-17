@@ -15,7 +15,11 @@ namespace control {
         
         led(const int pin = 0) : pin(pin) {
             
-            pinMode (0, OUTPUT);
+            int code = wiringPiSetup();
+            
+            if (code != 0) std::cout << "LED wiringPiSetup() returned: " << code << std::endl;
+            
+            pinMode (pin, OUTPUT);
         }
         
         void set(bool on) {
