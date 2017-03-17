@@ -62,6 +62,8 @@ namespace control {
             assert(this->check_address());
             
             i2c_smbus_write_word_data(this->file, reg, value);
+            
+            std::cout << "Wrote " << value << " to register: " << reg << std::endl;
         }
         
         int read(const int& reg) {
