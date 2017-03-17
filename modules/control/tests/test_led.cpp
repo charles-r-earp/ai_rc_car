@@ -6,7 +6,7 @@
 
 int main () {
     
-    control::led led(0), led(1);
+    control::led led(0), led2(1);
     
     bool on = false;
     
