@@ -134,6 +134,7 @@ namespace control {
         }
         
         void set_pwm_freq(double freq_hz) {
+            
             //"""Set the PWM frequency to the provided value in hertz."""
             double prescaleval = 25000000.0;    // 25MHz
             prescaleval /= 4096.0;     // 12-bit
@@ -143,7 +144,7 @@ namespace control {
         //logger.debug('Estimated pre-scale: {0}'.format(prescaleval))
             int prescale = int(std::floor(prescaleval + 0.5));
             //logger.debug('Final pre-scale: {0}'.format(prescale))
-            int oldmode = self._device.readU8(MODE1);
+            int oldmode = this->read(MODE1);
             int newmode = (oldmode & 0x7F) | 0x10;    // sleep
             this->write(MODE1, newmode);  // go to sleep
             this->write(PRESCALE, prescale);
@@ -173,7 +174,8 @@ namespace control {
 
         // Helper function to make setting a servo pulse width simpler.
         void set_servo_pulse(int channel, int pulse) {
-            pulse_length = 1000000; //   # 1,000,000 us per second
+            
+            double pulse_length = 1000000; //   # 1,000,000 us per second
             pulse_length /= 60;     //  # 60 Hz
             //print('{0}us per period'.format(pulse_length))
             pulse_length /= 4096;  //   # 12 bits of resolution
