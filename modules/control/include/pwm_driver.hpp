@@ -15,7 +15,7 @@ namespace control {
         
         i2c_device(const int& address, const std::string device = "/dev/i2c-1") {
             
-            file = open(this->device, O_RWR);
+            file = open(device, O_RDWR);
             
             if (file < 0) {
                 
@@ -44,14 +44,14 @@ namespace control {
         
         void write(const int& reg, const int& value) {
             
-            assert(this->check_adress());
+            assert(this->check_address());
             
             i2c_smbus_write_word_data(this->file, reg, value);
         }
         
         int read(const int& reg) {
             
-            assert(this->check_adress());
+            assert(this->check_address());
             
             return i2c_smbus_read_word_data(file, reg);
         }
@@ -63,7 +63,7 @@ namespace control {
         
         const static int PCA9685_MODE1 0x0;
         
-        pwm_driver(int address = 0x40) : i2c_device(address) {
+        pwm_driver(const int address = 0x40) : i2c_device(address) {
         
             this->reset();
         }
