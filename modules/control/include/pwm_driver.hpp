@@ -181,7 +181,7 @@ namespace control {
         // Helper function to make setting a servo pulse width simpler.
         void set_servo_pulse(int channel, int pulse) {
             
-            double pulse_length = 1000000; //   # 1,000,000 us per second
+            int pulse_length = 1000000; //   # 1,000,000 us per second
             pulse_length /= 60;     //  # 60 Hz
             //print('{0}us per period'.format(pulse_length))
             pulse_length /= 4096;  //   # 12 bits of resolution
