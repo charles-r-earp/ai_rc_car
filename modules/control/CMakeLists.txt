@@ -6,4 +6,4 @@ add_library(control INTERFACE)
 
 #target_link_libraries(control wiringPi)
 
-add_subdirectory(tests)
+#add_subdirectory(tests)
