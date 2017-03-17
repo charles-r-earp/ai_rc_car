@@ -47,14 +47,14 @@ namespace control {
             
         }
         
-        /*void write(const int& reg, const int& value) {
+        void write(const u8& reg, const u16& value) {
             
             assert(this->check_address());
             
             i2c_smbus_write_word_data(this->file, reg, value);
         }
         
-        int read(const int& reg) {
+        /*int read(const int& reg) {
             
             assert(this->check_address());
             
