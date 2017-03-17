@@ -47,7 +47,7 @@ namespace control {
             
         }
         
-        void write(const int& reg, const int& value) {
+        /*void write(const int& reg, const int& value) {
             
             assert(this->check_address());
             
@@ -59,7 +59,7 @@ namespace control {
             assert(this->check_address());
             
             return i2c_smbus_read_word_data(file, reg);
-        }
+        }*/
     };
 
     // Adafruit P815
@@ -75,7 +75,7 @@ namespace control {
         
         void reset() {
             
-            this->write(PCA9685_MODE1, 0x0);
+            //this->write(PCA9685_MODE1, 0x0);
         }
         
         
