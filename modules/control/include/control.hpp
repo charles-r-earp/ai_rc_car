@@ -22,7 +22,7 @@ namespace control {
             
             digitalWrite (0, on); 
         }
-    }
+    };
 }
 
 #endif // AI_RC_CAR_CONTROL_HPP
