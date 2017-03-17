@@ -182,10 +182,11 @@ namespace control {
 
         void set_all_pwm(int on, int off) {
             //"""Sets all PWM channels."""
-            this->write(ALL_LED_ON_L, on & 0xFF);
+            //this->write(ALL_LED_ON_L, on & 0xFF);
+            this->write(ALL_LED_ON_L, on);
             this->write(ALL_LED_ON_H, on >> 8);
             //this->write(ALL_LED_OFF_L, off & 0xFF);
-            this->write(ALL_LED_OFF_L, 0x96);
+            this->write(ALL_LED_OFF_L, off);
             this->write(ALL_LED_OFF_H, off >> 8);
         }
         
