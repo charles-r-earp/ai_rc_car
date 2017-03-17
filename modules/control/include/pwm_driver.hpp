@@ -5,6 +5,7 @@
 #include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>*/
+#include <cstddef>
 #include <linux/i2c-dev.h>
 /*#include <sys/ioctl.h>
 #include <fcntl.h>
