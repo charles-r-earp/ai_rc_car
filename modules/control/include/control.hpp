@@ -8,23 +8,21 @@
 #define WIRINGPI_CODES 
 
 namespace control {
-
-    struct servo {
-        
-        servo() {
-            
-            this->setup();
-        }
     
-        int setup() {
+    struct led {
+        
+        int pin;
+        
+        led(const int& pin) {
             
-            int error_code = wiringPiSetup(); 
-            
-            std::cout << "servo_control setup()... error_code = " << error_code << std::endl; 
-            
-            return error_code;
+            this->pin = pin;
         }
-    };
+        
+        bool set(const bool& on) {
+            
+            digitalWrite (0, on); 
+        }
+    }
 }
 
 #endif // AI_RC_CAR_CONTROL_HPP
