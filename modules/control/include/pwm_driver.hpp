@@ -141,7 +141,7 @@ namespace control {
             prescaleval -= 1.0;
         //logger.debug('Setting PWM frequency to {0} Hz'.format(freq_hz))
         //logger.debug('Estimated pre-scale: {0}'.format(prescaleval))
-            int prescale = int(math.floor(prescaleval + 0.5))
+            int prescale = int(std::floor(prescaleval + 0.5));
             //logger.debug('Final pre-scale: {0}'.format(prescale))
             int oldmode = self._device.readU8(MODE1);
             int newmode = (oldmode & 0x7F) | 0x10;    // sleep
