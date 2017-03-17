@@ -66,7 +66,7 @@ namespace control {
     
     struct pwm_driver : i2c_device {
         
-        const static int PCA9685_MODE1 0x0;
+        const static int PCA9685_MODE1 = 0x0;
         
         pwm_driver(const int address = 0x40) : i2c_device(address) {
         
