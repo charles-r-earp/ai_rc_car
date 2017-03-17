@@ -103,7 +103,7 @@ namespace control {
         
         void set_width(const int& num, const double& sec) {
             
-            int x = SCALE/(sec * (FREQ_MAX - FREQ_MIN));
+            int x = SCALE/2;// SCALE/(sec * (FREQ_MAX - FREQ_MIN));
             
             
             this->write(LED0_ON_L+4*num, x);
