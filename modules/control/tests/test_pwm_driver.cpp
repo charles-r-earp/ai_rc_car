@@ -1,4 +1,4 @@
-#include <control.cpp>
+#include <control.hpp>
 
 
 int main() {
