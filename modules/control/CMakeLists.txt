@@ -1,6 +1,9 @@
+#include_directories(include)
+
 add_library(control INTERFACE)
-target_sources(control INTERFACE include/control.hpp)
-#target_include_directories(control INTERFACE include)
+
+target_sources(control INTERFACE control.hpp)
+target_include_directories(control INTERFACE include)
 
 find_library(wiringPi wiringPi4 /usr/local/include /usr/local/lib)
 
