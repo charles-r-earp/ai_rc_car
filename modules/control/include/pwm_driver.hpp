@@ -82,6 +82,8 @@ namespace control {
             this->write(reg);
             
             return i2c_smbus_read_word_data(file, reg);
+            
+            std::cout << "Read " << decimal_to_hex(value) << " from register: " << decimal_to_hex(reg) << std::endl;
         }
         
     };
