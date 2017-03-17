@@ -20,11 +20,6 @@ namespace control {
             digitalWrite(this->pin, on);
         }
         
-    }
-        
-        
-        
-        
     };
 }
 
