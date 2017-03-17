@@ -49,7 +49,7 @@ namespace control {
         
         void write(const int& reg, const int& value) {
             
-            asert(this->check_address());
+            assert(this->check_address());
             
             i2c_smbus_write_word_data(this->file, reg, value);
         }
