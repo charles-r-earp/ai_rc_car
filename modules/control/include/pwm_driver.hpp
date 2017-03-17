@@ -59,11 +59,12 @@ namespace control {
             i2c_smbus_write_word_data(this->file, reg, value);
         }
         
-        /*int read(const int& reg) {
+        int read(const int& reg) {
             
             assert(this->check_address());
             
-            return i2c_smbus_read_word_data(file, reg);*/
+            return i2c_smbus_read_word_data(file, reg);
+        }
         
     };
 
