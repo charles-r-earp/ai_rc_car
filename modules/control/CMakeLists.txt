@@ -1,5 +1,3 @@
-#include_directories(include)
-
 add_library(control INTERFACE)
 
 target_include_directories(control INTERFACE include)
