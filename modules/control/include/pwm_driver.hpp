@@ -1,6 +1,7 @@
 #ifndef AI_RC_CAR_CONTROL_PWM_DRIVER_HPP
 #define AI_RC_CAR_CONTROL_PWM_DRIVER_HPP
 
+#define NULL 0
 #include <linux/i2c-dev.h>
 /*#include <sys/ioctl.h>
 #include <sys/types.h>
