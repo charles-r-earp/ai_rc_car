@@ -80,6 +80,9 @@ namespace control {
     const static int LED0_OFF_L = 0x8;
     const static int LED0_OFF_H = 0x9;
     const static int SCALE = 4095;
+    const static int FREQ_MIN = 24;
+    const static int FREQ_MAX = 1526;
+    
 
     // Adafruit P815
     
@@ -98,13 +101,15 @@ namespace control {
             this->write(0x0, 0x0);
         }
         
-        void setPWM(const int& num, const int& on, const int&off) {
+        void set_width(const int& num, const double& sec) {
             
-            this->write(LED0_ON_L+4*num);
-            this->write(on);
-            this->write(on>>8);
-            this->write(off);
-            this->write(off>>8);
+            int x = SCALE/(sec * (FREQ_MAX - FREQ_MIN));
+            
+            
+            this->write(LED0_ON_L+4*num, x);
+            this->write(LED0_ON_H+4*num, SCALE);
+            this->write(LED0_OFF_L+4*num, SCALE-x);
+            this->write(LED0_OFF_H+4*num, 0);
             
         }
         
