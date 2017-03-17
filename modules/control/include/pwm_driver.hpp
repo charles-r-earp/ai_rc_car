@@ -97,7 +97,7 @@ namespace control {
             this->reset();
             
             
-            /*this->sleep();
+            this->sleep();
             
             int val = std::round(25000000/(4096*update_rate)) - 1;
             
@@ -109,7 +109,7 @@ namespace control {
             
             std::cout << "prescale = " << val << " pwm update_frequency = " << rate << std::endl;
             
-            this->sleep();*/
+            this->sleep();
         }
         
         void reset() {
@@ -119,12 +119,14 @@ namespace control {
         
         void sleep() {
             
-            this->write(PCA9685_MODE1 + PCA9685_SLEEP_BIT, 1 );
+            int bits = this->read(PCA9685_MODE1);
+            bits += 31;
+            this->write(PCA9685_MODE1, bits );
         }
         
         void set_width(const int& num, const double& sec) {
             
-            int x = SCALE/(sec * (FREQ_MAX - FREQ_MIN));
+            int x = 104;
             
             
             this->write(LED0_ON_L+4*num, x);
