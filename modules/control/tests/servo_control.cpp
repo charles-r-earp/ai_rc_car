@@ -1,4 +1,4 @@
-//#include <control/control.hpp>
+#include <control.hpp>
 
 #include <iostream>
 
