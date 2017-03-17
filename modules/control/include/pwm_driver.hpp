@@ -108,7 +108,7 @@ namespace control {
             
         }
         
-        void setDuty(const int& num, const double& duty) {
+        void set_duty(const int& num, const double& duty) {
             // duty is fraction on
             
             this->write(LED0_ON_L+4*num, duty*SCALE);
