@@ -99,8 +99,12 @@ namespace control {
             
             this->sleep();
             
-            this->write(PCA9685_PRESCALE, std::round(25000000/(4096*update_rate)) - 1);
-            int val = this->read(PCA9685_PRESCALE);
+            int val = std::round(25000000/(4096*update_rate)) - 1;
+            
+            std::cout << "setting prescale >> " << val << std::endl;
+            
+            this->write(PCA9685_PRESCALE, val);
+            val = this->read(PCA9685_PRESCALE);
             int rate = 25000000/((1 + val) * 4096);
             
             std::cout << "pwm update_frequency = " << rate << std::endl;
