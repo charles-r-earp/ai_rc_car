@@ -12,6 +12,7 @@
 #include <cassert>
 #include <string>
 #include <iostream>
+#include <vector>
 
 namespace control {
     
