@@ -20,9 +20,8 @@ namespace control {
         
         std::stringstream ss;
         ss << std::hex << decimal_value; // int decimal_value
-        std::string res ( ss.str() );
-
-        std::cout << res;
+        
+        return ss.str();
     }
     
     struct i2c_device {
