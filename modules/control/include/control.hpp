@@ -9,19 +9,22 @@
 
 namespace control {
     
-    struct led {
+    struct led { 
         
-        int pin;
+        const int pin;
         
-        led(const int& pin) {
+        led(int pin = 0) pin(pin) {}
+        
+        void set(bool on) {
             
-            this->pin = pin;
+            digitalWrite(this->pin, on);
         }
         
-        bool set(const bool& on) {
-            
-            digitalWrite (0, on); 
-        }
+    }
+        
+        
+        
+        
     };
 }
 
