@@ -52,6 +52,11 @@ namespace control {
             
         }
         
+        void write(const int& value) {
+            
+            i2c_smbus_write_byte(value);
+        }
+        
         void write(const int& reg, const int& value) {
             
             assert(this->check_address());
