@@ -1,6 +1,8 @@
 #ifndef AI_RC_CAR_CONTROL_HPP
 #define AI_RC_CAR_CONTROL_HPP
 
+#include <iostream>
+
 #include <wiringPi.h>
 
 #define WIRINGPI_CODES 
