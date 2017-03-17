@@ -88,7 +88,7 @@ namespace control {
             
             assert(this->check_address());
             
-            this->write(reg);
+            //this->write(reg);
             
             int value = i2c_smbus_read_byte(file, reg);
             
@@ -191,7 +191,7 @@ namespace control {
             int prescale = int(std::floor(prescaleval + 0.5));
             //logger.debug('Final pre-scale: {0}'.format(prescale))
             std::cout << "Final pre-scale: " << prescale << std::endl;
-            int oldmode = this->read(MODE1);
+            int oldmode = this->read8(MODE1);
             int newmode = (oldmode & 0x7F) | 0x10;    // sleep
             this->write8(MODE1, newmode);  // go to sleep
             this->write8(PRESCALE, prescale);
@@ -199,7 +199,7 @@ namespace control {
                 
             std::this_thread::sleep_for(std::chrono::milliseconds(5));
             
-            this->write(MODE1, oldmode | 0x80);
+            this->write8(MODE1, oldmode | 0x80);
         }
         
         void set_pwm(int channel, int on, int off) {
