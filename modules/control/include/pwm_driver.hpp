@@ -86,7 +86,7 @@ namespace control {
         const static int LED0_OFF_L = 0x8;
         const static int LED0_OFF_H = 0x9;
         
-        pwm_driver(const int address = 0x40) : i2c_device(address) {
+        pwm_driver(const int address = 0x50) : i2c_device(address) {
         
             this->reset();
         }
