@@ -124,13 +124,13 @@ namespace control {
             this->write(MODE2, OUTDRV);
             this->write(MODE1, ALLCALL);
             
-            std::this_thread::sleep_for (std::chrono::seconds(0.005));
+            std::this_thread::sleep_for (std::chrono::milliseconds(5));
             
             auto mode1 = this->read(MODE1);
             mode1 = mode1 & ~SLEEP;
             this->write(MODE1);
             
-            std::this_thread::sleep_for (std::chrono::seconds(0.005));
+            std::this_thread::sleep_for(std::chrono::milliseconds(5));
         }
         
         void set_pwm_freq(double freq_hz) {
@@ -149,7 +149,7 @@ namespace control {
             this->write(PRESCALE, prescale);
             this->write(MODE1, oldmode);
                 
-            std::this_thread::sleep_for (std::chrono::seconds(0.005));
+            std::this_thread::sleep_for(std::chrono::milliseconds(5));
             
             this->write(MODE1, oldmode | 0x80);
         }
