@@ -4,6 +4,6 @@ target_include_directories(control INTERFACE include)
 
 find_library(wiringPi wiringPi4 /usr/local/include /usr/local/lib)
 
-target_link_libraries(control wiringPi)
+target_link_libraries(control INTERFACE wiringPi)
 
 #add_subdirectory(tests)
