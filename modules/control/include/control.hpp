@@ -13,11 +13,14 @@ namespace control {
         
         const int pin;
         
-        led(const int pin = 0) : pin(pin) {}
+        led(const int pin = 0) : pin(pin) {
+            
+            pinMode (0, OUTPUT);
+        }
         
         void set(bool on) {
             
-            digitalWrite(this->pin, on);
+            digitalWrite(this->pin, on ? HIGH : LOW);
         }
         
     };
