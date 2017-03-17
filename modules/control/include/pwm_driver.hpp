@@ -59,14 +59,23 @@ namespace control {
             
         }
         
-        void write(const int& value) {
+        void write_raw8(const int& value) {
             
             assert(this->check_address());
             
             i2c_smbus_write_byte(this->file, value);
         }
         
-        void write(const int& reg, const int& value) {
+        void write8(const int& reg, const int& value) {
+            
+            assert(this->check_address());
+            
+            i2c_smbus_write_byte_data(this->file, reg, value);
+            
+            std::cout << "Wrote " << decimal_to_hex(value) << " to register: " << decimal_to_hex(reg) << std::endl;
+        }
+        
+        void write16(const int& reg, const int& value) {
             
             assert(this->check_address());
             
@@ -75,18 +84,36 @@ namespace control {
             std::cout << "Wrote " << decimal_to_hex(value) << " to register: " << decimal_to_hex(reg) << std::endl;
         }
         
-        int read(const int& reg) {
+        int read_raw8(const int& reg) {
             
             assert(this->check_address());
             
             this->write(reg);
             
-            int value = i2c_smbus_read_word_data(file, reg);
+            int value = i2c_smbus_read_byte(file, reg);
             
             std::cout << "Read " << decimal_to_hex(value) << " from register: " << decimal_to_hex(reg) << std::endl;
             
             return value;
         }
+        
+        int read_U8(const int& reg) {
+            
+            assert(this->check_address());
+            
+            this->write(reg);
+            
+            int value = i2c_smbus_read_byte_data(file, reg);
+            
+            std::cout << "Read " << decimal_to_hex(value) << " from register: " << decimal_to_hex(reg) << std::endl;
+            
+            return value;
+        }
+        
+        
+        
+        
+        
         
     };
     
@@ -143,9 +170,9 @@ namespace control {
             
             std::this_thread::sleep_for (std::chrono::milliseconds(5));
             
-            auto mode1 = this->read(MODE1);
+            auto mode1 = this->read_U8(MODE1);
             mode1 = mode1 & ~SLEEP;
-            this->write(MODE1);
+            this->write8(MODE1);
             
             std::this_thread::sleep_for(std::chrono::milliseconds(5));
         }
@@ -166,9 +193,9 @@ namespace control {
             std::cout << "Final pre-scale: " << prescale << std::endl;
             int oldmode = this->read(MODE1);
             int newmode = (oldmode & 0x7F) | 0x10;    // sleep
-            this->write(MODE1, newmode);  // go to sleep
-            this->write(PRESCALE, prescale);
-            this->write(MODE1, oldmode);
+            this->write8(MODE1, newmode);  // go to sleep
+            this->write8(PRESCALE, prescale);
+            this->write8(MODE1, oldmode);
                 
             std::this_thread::sleep_for(std::chrono::milliseconds(5));
             
@@ -180,20 +207,18 @@ namespace control {
             std::cout << "set_pwm(" << channel << ", " << on << ", " << off << ")" << std::endl;
             
             //"""Sets a single PWM channel."""
-            this->write(LED0_ON_L+4*channel, on & 0xFF);
-            this->write(LED0_ON_H+4*channel, on >> 8);
-            this->write(LED0_OFF_L+4*channel, off & 0xFF);
-            this->write(LED0_OFF_H+4*channel, off >> 8);
+            this->write8(LED0_ON_L+4*channel, on & 0xFF);
+            this->write8(LED0_ON_H+4*channel, on >> 8);
+            this->write8(LED0_OFF_L+4*channel, off & 0xFF);
+            this->write8(LED0_OFF_H+4*channel, off >> 8);
         }
 
         void set_all_pwm(int on, int off) {
             //"""Sets all PWM channels."""
-            //this->write(ALL_LED_ON_L, on & 0xFF);
-            this->write(ALL_LED_ON_L, on);
-            this->write(ALL_LED_ON_H, on >> 8);
-            //this->write(ALL_LED_OFF_L, off & 0xFF);
-            this->write(ALL_LED_OFF_L, off);
-            this->write(ALL_LED_OFF_H, off >> 8);
+            this->write8(ALL_LED_ON_L, on & 0xFF);
+            this->write8(ALL_LED_ON_H, on >> 8);
+            this->write8(ALL_LED_OFF_L, off & 0xFF);
+            this->write8(ALL_LED_OFF_H, off >> 8);
         }
         
 
