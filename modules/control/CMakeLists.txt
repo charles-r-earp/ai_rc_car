@@ -7,6 +7,7 @@ add_library(control INTERFACE)
 #message("wiringPi_INCLUDE_DIRS path: ${wiringPi_INCLUDE_DIRS}\n")
 
 #target_include_directories(control INTERFACE include wiringPi_INCLUDE_DIRS)
+target_include_directories(control INTERFACE include)
 
 target_sources(control INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/include/control.hpp)
 
