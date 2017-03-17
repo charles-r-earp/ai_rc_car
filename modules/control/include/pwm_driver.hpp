@@ -1,10 +1,6 @@
 #ifndef AI_RC_CAR_CONTROL_PWM_DRIVER_HPP
 #define AI_RC_CAR_CONTROL_PWM_DRIVER_HPP
 
-/*#include <unistd.h>
-#include <errno.h>
-#include <stdio.h>
-#include <stdlib.h>*/
 #include <cstddef> // define NULL
 #include <linux/i2c-dev.h>
 #include <sys/ioctl.h>
@@ -13,6 +9,9 @@
 #include <string>
 #include <iostream>
 #include <cmath>
+
+#include <thread>
+#include <chrono> 
 
 namespace control {
     
@@ -74,78 +73,120 @@ namespace control {
         
     };
     
-    const static int PCA9685_MODE1 = 0x0;
-    const static int PCA9685_PRESCALE = 0xFE;
-    const static int PCA9685_SLEEP_BIT = 4;
-    const static int LED0_ON_L = 0x6;
-    const static int LED0_ON_H = 0x7;
-    const static int LED0_OFF_L = 0x8;
-    const static int LED0_OFF_H = 0x9;
-    const static int SCALE = 4095;
-    const static int FREQ_MIN = 24;
-    const static int FREQ_MAX = 1526;
     
 
     // Adafruit P815
     
     struct pwm_driver : i2c_device {
         
+        # Registers/etc:
+        int PCA9685_ADDRESS = 0x40
+        int MODE1  = 0x00;
+        int MODE2 = 0x01;
+        int SUBADR1 = 0x02;
+        int SUBADR2 = 0x03
+        int SUBADR3 = 0x04;
+        int PRESCALE = 0xFE;
+        int LED0_ON_L = 0x06;
+        int LED0_ON_H = 0x07;
+        int LED0_OFF_L = 0x08;
+        int LED0_OFF_H = 0x09;
+        int ALL_LED_ON_L = 0xFA;
+        int ALL_LED_ON_H = 0xFB;
+        int ALL_LED_OFF_L = 0xFC;
+        int ALL_LED_OFF_H = 0xFD;
+        
+        # Bits:
+        int RESTART = 0x80;
+        int SLEEP = 0x10;
+        int ALLCALL = 0x01;
+        int INVRT = 0x10;
+        int OUTDRV = 0x04;
         
         
-        pwm_driver(const int address = 0x40, const int update_rate = 1200) : i2c_device(address) {
+        struct servo {
+            
+            int channel;
+            
+            servo(int channel) {
+            
+                this->channel = channel;
+            }
+            
+            mutable int min = 150;
+            mutable int max = 600;
+        };
         
-            this->reset();
+        
+        pwm_driver(const int address = 0x40) : i2c_device(address) {
+        
+            this->set_all_pwm(0, 0);
+            this->write(MODE2, OUTDRV);
+            this->write(MODE1, ALLCALL);
             
+            std::this_thread::sleep_for (std::chrono::seconds(0.005));
             
-            this->sleep();
+            auto mode1 = this->read(MODE1);
+            mode1 = mode1 & ~SLEEP;
+            this->write(MODE1);
             
-            int val = std::round(25000000/(4096*update_rate)) - 1;
-            
-            std::cout << "setting prescale >> " << val << std::endl;
-            
-            this->write(PCA9685_PRESCALE, val);
-            val = this->read(PCA9685_PRESCALE);
-            int rate = 25000000/((1 + val) * 4096);
-            
-            std::cout << "prescale = " << val << " pwm update_frequency = " << rate << std::endl;
-            
-            this->sleep();
+            std::this_thread::sleep_for (std::chrono::seconds(0.005));
         }
         
-        void reset() {
+        void set_pwm_freq(double freq_hz) {
+            """Set the PWM frequency to the provided value in hertz."""
+            double prescaleval = 25000000.0;    # 25MHz
+            prescaleval /= 4096.0;      # 12-bit
+            prescaleval /= freq_hz;
+            prescaleval -= 1.0;
+        //logger.debug('Setting PWM frequency to {0} Hz'.format(freq_hz))
+        //logger.debug('Estimated pre-scale: {0}'.format(prescaleval))
+            prescale = int(math.floor(prescaleval + 0.5))
+            //logger.debug('Final pre-scale: {0}'.format(prescale))
+            int oldmode = self._device.readU8(MODE1);
+            int newmode = (oldmode & 0x7F) | 0x10    # sleep
+            this->write(MODE1, newmode)  # go to sleep
+            this->write(PRESCALE, prescale)
+            this->write(MODE1, oldmode)
+                
+            std::this_thread::sleep_for (std::chrono::seconds(0.005));
             
-            this->write(PCA9685_MODE1, 0x0);
+            this->write(MODE1, oldmode | 0x80)
         }
         
-        void sleep() {
-            
-            int bits = this->read(PCA9685_MODE1);
-            bits += 31;
-            this->write(PCA9685_MODE1, bits );
+        void set_pwm(int channel, int on, int off) {
+            """Sets a single PWM channel."""
+            this->write(LED0_ON_L+4*channel, on & 0xFF);
+            this->write(LED0_ON_H+4*channel, on >> 8);
+            this->write(LED0_OFF_L+4*channel, off & 0xFF);
+            this->write(LED0_OFF_H+4*channel, off >> 8);
+        }
+
+        void set_all_pwm(int on, int off) {
+            """Sets all PWM channels."""
+            this->write(ALL_LED_ON_L, on & 0xFF);
+            this->write(ALL_LED_ON_H, on >> 8);
+            this->write(ALL_LED_OFF_L, off & 0xFF);
+            this->write(ALL_LED_OFF_H, off >> 8);
         }
         
-        void set_width(const int& num, const double& sec) {
-            
-            int x = 104;
-            
-            
-            this->write(LED0_ON_L+4*num, x);
-            this->write(LED0_ON_H+4*num, SCALE);
-            
+
+        # Helper function to make setting a servo pulse width simpler.
+        void set_servo_pulse(int channel, int pulse) {
+            pulse_length = 1000000;    # 1,000,000 us per second
+            pulse_length /= 60;       # 60 Hz
+            //print('{0}us per period'.format(pulse_length))
+            pulse_length /= 4096;     # 12 bits of resolution
+            //print('{0}us per bit'.format(pulse_length))
+            pulse *= 1000;
+            pulse /= pulse_length;
+            this->set_pwm(channel, 0, pulse);
         }
         
-        void set_duty(const int& num, const double& duty) {
-            // duty is fraction on
-            
-            
-            this->write(LED0_OFF_L+4*num, 0);
-            this->write(LED0_OFF_H+4*num, 0);
-            
-            
-            this->write(LED0_ON_L+4*num, 1000);
-            this->write(LED0_ON_H+4*num, SCALE);
-        }
+        void set_ratio(const servo& s, double ratio) {
         
+            this->set_servo_pulse(s.channel, ratio*(s.max-s.min) + s.min);
+        }
         
     };
 }

@@ -1,20 +1,21 @@
-#include <control.hpp>
-
-#include <thread>
-#include <chrono>   
+#include <control.hpp>  
 
 
 int main() {
     
     control::pwm_driver pwm_driver;
     
-    pwm_driver.set_width(0, 4.8/1000000);
+    control::pwm_driver::servo servo;
     
-    int x = 0;
-    
-    while(x < 100) {
-        std::cout << x << " = " << pwm_driver.read(x) << std::endl;
-        ++x;
+    while (true) {
+        
+        pwm_driver.set_ratio(servo, 0);
+        
+        std::this_thread::sleep_for (std::chrono::seconds(1));
+        
+        pwm_driver.set_ratio(servo, 1);
+        
+        std::this_thread::sleep_for (std::chrono::seconds(1));
     }
     
     return 0;
