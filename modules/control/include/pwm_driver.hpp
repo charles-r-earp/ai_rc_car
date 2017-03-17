@@ -79,6 +79,7 @@ namespace control {
     const static int LED0_ON_H = 0x7;
     const static int LED0_OFF_L = 0x8;
     const static int LED0_OFF_H = 0x9;
+    const static int SCALE = 4095;
 
     // Adafruit P815
     
@@ -107,9 +108,13 @@ namespace control {
             
         }
         
-        void setDuty(const int& num, const int& duty) {
+        void setDuty(const int& num, const double& duty) {
+            // duty is fraction on
             
-            this->write(LED0_ON_L, duty);
+            this->write(LED0_ON_L+4*num, duty*SCALE);
+            this->write(LED0_ON_H+4*num, SCALE);
+            this->write(LED0_OFF_L+4*num, (1-duty)*SCALE);
+            this->write(LED0_OFF_H+4*num, 0);
         }
         
         
