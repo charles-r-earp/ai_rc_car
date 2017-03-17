@@ -168,11 +168,11 @@ namespace control {
             int newmode = (oldmode & 0x7F) | 0x10;    // sleep
             this->write(MODE1, newmode);  // go to sleep
             this->write(PRESCALE, prescale);
-            //this->write(MODE1, oldmode);
+            this->write(MODE1, oldmode);
                 
             std::this_thread::sleep_for(std::chrono::milliseconds(5));
             
-            //this->write(MODE1, oldmode | 0x80);
+            this->write(MODE1, oldmode | 0x80);
         }
         
         void set_pwm(int channel, int on, int off) {
