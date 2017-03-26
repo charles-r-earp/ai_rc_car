@@ -8,7 +8,7 @@ struct car {
 
     control controller;
     
-}
+};
 
 
 #endif // AI_RC_CAR_AI_RC_CAR_HPP
