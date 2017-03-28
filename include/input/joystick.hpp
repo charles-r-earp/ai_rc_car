@@ -32,14 +32,11 @@ struct joystick {
     joystick(int num = 0, bool block = true) {
         std::stringstream ss;
         ss << "/dev/input/js" << num;
-        this->file = this->open(ss.str(), block);
+        std::string path = ss.str();
+        this->file = open(path.c_str(), block ? O_RDONLY : O_RDONLY | O_NONBLOCK);
     }
     
-    int open(std::string path, bool block) {
-        return open(path.c_str(), block ? O_RDONLY : O_RDONLY | O_NONBLOCK);
-    }
-    
-    event read() {
+    event get() {
         
         event next_event;
         

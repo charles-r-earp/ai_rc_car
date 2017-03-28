@@ -37,7 +37,7 @@ class ds4 {
     
     void update() {
         while (true) {
-            joystick::event = this->controller.read();
+            joystick::event = this->controller.get();
             
             switch (event.get_type()) {
                 case event::button:

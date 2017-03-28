@@ -1,7 +1,6 @@
 #ifndef AI_RC_CAR_INPUT_INPUT_HPP
 #define AI_RC_CAR_INPUT_INPUT_HPP
 
-#include "joystick.hpp"
 #include "ds4.hpp"
 
 struct input {
