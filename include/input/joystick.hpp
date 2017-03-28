@@ -31,13 +31,15 @@ struct joystick {
         }
     };
 
-    joystick(int num = 0, bool block = true) {
+    bool init(int num = 0, bool block = true) {
         std::stringstream ss;
         ss << "/dev/input/js" << num;
         std::string path = ss.str();
         this->file = open(path.c_str(), block ? O_RDONLY : O_RDONLY | O_NONBLOCK);
         std::cout << "joystick() file = " << this->file << std::endl;
         printf ("Error no is : %d\n", errno);
+        
+        return this->file >= 0;
     }
     
     event get() {
