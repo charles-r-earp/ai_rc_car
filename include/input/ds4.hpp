@@ -39,7 +39,7 @@ struct ds4 {
         std::cout << "update_thread()" << std::endl;
         this->update_thread = std::thread([&](){
             while (true) {
-                std::cout << "update" << std::endl;
+                //std::cout << "update" << std::endl;
                 joystick::event event = controller.get();
 
                 switch (event.get_type()) {
