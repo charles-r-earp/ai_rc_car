@@ -42,7 +42,7 @@ struct ds4 {
                 //std::cout << "update" << std::endl;
                 joystick::event event = controller.get();
                 
-                joystick::event::type type = event.get_type();
+                joystick::event::Type type = event.get_type();
                 std::cout << "type: " << type << std::endl;
 
                 switch (type) {
