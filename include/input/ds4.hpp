@@ -10,7 +10,7 @@
 
 struct ds4 {
     
-    std::thread ds4drv_thread, update_thread
+    std::thread ds4drv_thread, update_thread;
     joystick controller;
     
     struct button {
