@@ -34,6 +34,8 @@ struct joystick {
         ss << "/dev/input/js" << num;
         std::string path = ss.str();
         this->file = open(path.c_str(), block ? O_RDONLY : O_RDONLY | O_NONBLOCK);
+        
+        std::cout << "joystick() file = " << this->file << std::endl;
     }
     
     event get() {

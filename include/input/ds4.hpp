@@ -43,7 +43,7 @@ struct ds4 {
                 joystick::event event = controller.get();
                 
                 joystick::event::Type type = event.get_type();
-                std::cout << "type: " << type << std::endl;
+                //std::cout << "type: " << type << std::endl;
 
                 switch (type) {
                     case joystick::event::Type::Button:
