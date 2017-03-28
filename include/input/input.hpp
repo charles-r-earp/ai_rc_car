@@ -12,6 +12,8 @@ struct input {
         Autonomous
     };
     
+    State state;
+    
     struct control_input {
         double steer_ratio, drive_ratio;  
     };
@@ -19,6 +21,8 @@ struct input {
     input(State state = State::Manual) {
         this->state = state;
     }
+    
+    
     
     control_input get() {
         
