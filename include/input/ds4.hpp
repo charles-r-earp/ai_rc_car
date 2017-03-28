@@ -32,11 +32,15 @@ struct ds4 {
     axis L2, R2;
     
     ds4() {
-        
+        std::cout << "ds4()" << std::endl;
         system("ds4drv");
         
+        stopped = false;
+        
+        std::cout << "update_thread()" << std::endl;
         update_thread = std::thread([&](){
             while (true) {
+                std::cout << "update" << std::endl;
                 joystick::event event = controller.get();
 
                 switch (event.get_type()) {
