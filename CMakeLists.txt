@@ -15,10 +15,9 @@ endif ()
 
 target_sources(ai_rc_car INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/include/ai_rc_car.hpp)
 
-#find_package(lambda REQUIRED)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include 
-#${lambda_INCLUDE_DIRS}
-)
+find_package(i2c-linux CONFIG REQUIRED)
+
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 target_link_libraries(ai_rc_car INTERFACE i2c-linux)
 
