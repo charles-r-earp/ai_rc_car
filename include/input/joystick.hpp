@@ -8,7 +8,9 @@
 #include <iostream>
 #include <string>
 #include <sstream>
-#include "unistd.h"
+#include <unistd.h>
+
+#include <errno.h>
 
 struct joystick {
     
@@ -34,8 +36,8 @@ struct joystick {
         ss << "/dev/input/js" << num;
         std::string path = ss.str();
         this->file = open(path.c_str(), block ? O_RDONLY : O_RDONLY | O_NONBLOCK);
-        
         std::cout << "joystick() file = " << this->file << std::endl;
+        printf ("Error no is : %d\n", errno);
     }
     
     event get() {
@@ -45,6 +47,10 @@ struct joystick {
         read(this->file, &next_event, sizeof(next_event)); 
         
         return next_event;
+    }
+    
+    ~Joystick() {
+        close(this->file);
     }
 };
 
