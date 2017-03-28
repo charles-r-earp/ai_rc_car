@@ -3,10 +3,25 @@
 
 
 #include "control/control.hpp"
+#include "input/input.hpp"
 
-struct car {
+struct ai_rc_car {
 
     control controller;
+    input input_manager;
+    
+    void run() {
+        while(true) {
+            this->update();
+        }
+    }
+    
+    void update() {
+        
+       input::control_input inputs = this->input.get();
+        this->controller.drive(inputs.drive_ratio);
+        this->controller.steer(inputs.steer_ratio);
+    }
     
 };
 
