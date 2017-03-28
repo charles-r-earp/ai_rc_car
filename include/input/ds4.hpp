@@ -44,10 +44,11 @@ struct ds4 {
         
         this->update_thread = std::thread([&](){
             bool success = false;
+            int number = 0;
             while (!success) {
-                success = controller.init(1);
+                success = controller.init(number);
                 if (success) break;
-                std::cout << "waiting for /dev/input/joy1" << std::endl;
+                std::cout << "waiting for /dev/input/joy" << number << std::endl;
                 std::this_thread::sleep_for (std::chrono::seconds(1));
             }
             
