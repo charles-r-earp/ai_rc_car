@@ -33,7 +33,7 @@ struct ds4 {
     thumbstick left, right;
     axis L2, R2;
     
-    init() {
+    void init() {
         //std::cout << "ds4()" << std::endl;
         
         // creates /dev/input/joy1
