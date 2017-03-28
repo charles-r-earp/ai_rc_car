@@ -8,7 +8,7 @@
 #include <chrono>
 
 
-class ds4 {
+struct ds4 {
     
     std::thread update_thread;
     joystick controller;
