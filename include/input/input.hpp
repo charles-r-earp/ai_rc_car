@@ -16,7 +16,7 @@ struct input {
         double steer_ratio, drive_ratio;  
     };
     
-    input(State state = State.Manual) {
+    input(State state = State::Manual) {
         this->state = state;
     }
     
