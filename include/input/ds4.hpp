@@ -56,6 +56,6 @@ class ds4 {
             std::this_thread::sleep_for (std::chrono::milliseconds(100));
         }
     }
-}
+};
 
 #endif // AI_RC_CAR_INPUT_DS4_HPP
