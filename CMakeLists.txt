@@ -17,7 +17,7 @@ find_package(i2c-linux CONFIG REQUIRED)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include i2c-linux_INCLUDE_DIRS)
 
-target_link_libraries(ai_rc_car INTERFACE)
+target_link_libraries(ai_rc_car INTERFACE pthread)
 
 add_executable(run src/run.cpp)
 target_link_libraries(run ai_rc_car)
