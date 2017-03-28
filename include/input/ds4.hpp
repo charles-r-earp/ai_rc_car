@@ -34,24 +34,26 @@ struct ds4 {
     axis L2, R2;
     
     ds4() {
-        std::cout << "ds4()" << std::endl;
+        //std::cout << "ds4()" << std::endl;
         
         // creates /dev/input/joy1
         this->ds4drv_thread = std::thread([](){ system("ds4drv"); });
         
-        std::thread wait_thread([&](){
-            bool success = false;
-            success = controller.init(1);
-            if (success) break;
-            std::cout << "waiting for /dev/input/joy1" << std::endl;
-            std::this_thread::sleep_for (std::chrono::seconds(1));
-        });
+
+        //std::cout << "update_thread()" << std::endl;
         
-        // wait
-        wait_thread.join();
-        
-        std::cout << "update_thread()" << std::endl;
         this->update_thread = std::thread([&](){
+            bool success = false;
+            while (!success) {
+                success = controller.init(1);
+                if (success) break;
+                std::cout << "waiting for /dev/input/joy1" << std::endl;
+                std::this_thread::sleep_for (std::chrono::seconds(1));
+            }
+            
+            std::cout << "found /dev/input/joy1" << std::endl; 
+            
+            /*
             while (true) {
                 //std::cout << "update" << std::endl;
                 joystick::event event = controller.get();
@@ -76,7 +78,7 @@ struct ds4 {
                 }
 
                 std::this_thread::sleep_for (std::chrono::milliseconds(100));
-            }
+            }*/
         });
     }
 };
