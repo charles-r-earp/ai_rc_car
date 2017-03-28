@@ -33,7 +33,7 @@ struct ds4 {
     thumbstick left, right;
     axis L2, R2;
     
-    ds4() {
+    init() {
         //std::cout << "ds4()" << std::endl;
         
         // creates /dev/input/joy1
@@ -53,7 +53,6 @@ struct ds4 {
             }
             
             std::cout << "found /dev/input/joy" << number << std::endl; 
-            
             
             while (true) {
                 //std::cout << "update" << std::endl;
