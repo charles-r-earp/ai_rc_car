@@ -37,7 +37,7 @@ class ds4 {
         
         update_thread = std::thread([&](){
             while (true) {
-                joystick::event = controller.get();
+                joystick::event event = controller.get();
 
                 switch (event.get_type()) {
                     case event::button:
