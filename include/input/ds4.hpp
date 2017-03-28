@@ -1,6 +1,8 @@
 #ifndef AI_RC_CAR_INPUT_DS4_HPP
 #define AI_RC_CAR_INPUT_DS4_HPP
 
+#include "joystick.hpp"
+
 #include <cstdlib>
 #include <thread>
 #include <chrono>
