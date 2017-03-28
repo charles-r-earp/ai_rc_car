@@ -34,10 +34,10 @@ struct ds4 {
     ds4() {
         std::cout << "ds4()" << std::endl;
         
-        this->ds4drv_thread = std::thread([](){ system("ds4drv") });
+        this->ds4drv_thread = std::thread([](){ system("ds4drv"); });
         
         std::cout << "update_thread()" << std::endl;
-        update_thread = std::thread([&](){
+        this->update_thread = std::thread([&](){
             while (true) {
                 std::cout << "update" << std::endl;
                 joystick::event event = controller.get();
