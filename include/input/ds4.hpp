@@ -36,18 +36,17 @@ struct ds4 {
     ds4() {
         std::cout << "ds4()" << std::endl;
         
-        // creates /dev/input/joy0
+        // creates /dev/input/joy1
         this->ds4drv_thread = std::thread([](){ system("ds4drv"); });
         
         // reads from the same
         bool success;
         while (!success) {
-            success = this->controller.init();
-            std::cout << "waiting for /dev/input/joy0" << std::endl;
+            success = this->controller.init(1);
+            if (success) break;
+            std::cout << "waiting for /dev/input/joy1" << std::endl;
             std::this_thread::sleep_for (std::chrono::seconds(1));
         }
-        
-        assert(success);
         
         std::cout << "update_thread()" << std::endl;
         this->update_thread = std::thread([&](){
