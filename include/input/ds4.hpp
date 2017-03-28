@@ -44,6 +44,7 @@ struct ds4 {
 
                 switch (event.get_type()) {
                     case joystick::event::Type::Button:
+                        std::cout << "Button!" << std::endl;
                         switch (event.number) {
                             case 0:
                                 circle.pressed = event.value;
@@ -52,6 +53,7 @@ struct ds4 {
                                 break;
                         }
                     case joystick::event::Type::Axis:
+                        std::cout << "Axis!" << std::endl;
                     default:
                         break;
                 }
