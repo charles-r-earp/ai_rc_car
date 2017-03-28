@@ -1,3 +1,6 @@
+#ifndef AI_RC_CAR_JOYSTICK_INPUT_HPP
+#define AI_RC_CAR_JOYSTICK_INPUT_HPP
+
 
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -45,3 +48,5 @@ struct joystick {
         return next_event;
     }
 };
+
+#endif // AI_RC_CAR_JOYSTICK_INPUT_HPP

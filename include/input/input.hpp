@@ -1,7 +1,8 @@
+#ifndef AI_RC_CAR_INPUT_INPUT_HPP
+#define AI_RC_CAR_INPUT_INPUT_HPP
 
-
-#include <joystick.hpp>
-#include <ds4.hpp>
+#include "joystick.hpp"
+#include "ds4.hpp"
 
 #include <thread>
 #include <chono>
@@ -39,3 +40,5 @@ struct input {
         }
     }
 };
+
+#endif // AI_RC_CAR_INPUT_INPUT_HPP
