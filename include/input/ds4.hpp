@@ -10,7 +10,7 @@
 
 struct ds4 {
     
-    std::thread update_thread;
+    std::thread ds4drv_thread, update_thread
     joystick controller;
     
     struct button {
@@ -33,7 +33,8 @@ struct ds4 {
     
     ds4() {
         std::cout << "ds4()" << std::endl;
-        system("ds4drv");
+        
+        this->ds4drv_thread = std::thread([](){ system("ds4drv") });
         
         std::cout << "update_thread()" << std::endl;
         update_thread = std::thread([&](){
