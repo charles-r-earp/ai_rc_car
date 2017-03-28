@@ -40,7 +40,7 @@ class ds4 {
                 joystick::event event = controller.get();
 
                 switch (event.get_type()) {
-                    case event::button:
+                    case joystick::event::button:
                         switch (event.number) {
                             case 0:
                                 circle.pressed = event.value;
@@ -48,7 +48,7 @@ class ds4 {
                             default: 
                                 break;
                         }
-                    case event::axis:
+                    case joystick::event::axis:
                     default:
                         break;
                 }
