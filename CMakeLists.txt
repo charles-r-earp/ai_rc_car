@@ -22,5 +22,5 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include
 
 target_link_libraries(ai_rc_car INTERFACE i2c-linux)
 
-add_executable(run run/run.cpp)
+add_executable(run src/run.cpp)
 target_link_libraries(run ai_rc_car)
