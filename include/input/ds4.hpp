@@ -34,29 +34,28 @@ class ds4 {
     ds4() {
         
         system("ds4drv");
-        update_thread = std::thread(this->update);
-    }
-    
-    void update() {
-        while (true) {
-            joystick::event = this->controller.get();
-            
-            switch (event.get_type()) {
-                case event::button:
-                    switch (event.number) {
-                        case 0:
-                            this->circle.pressed = event.value;
-                            if (event.value) std::cout << "circle pressed" << std::endl;
-                        default: 
-                            break;
-                    }
-                case event::axis:
-                default:
-                    break;
+        
+        update_thread = std::thread([&](){
+            while (true) {
+                joystick::event = controller.get();
+
+                switch (event.get_type()) {
+                    case event::button:
+                        switch (event.number) {
+                            case 0:
+                                circle.pressed = event.value;
+                                if (event.value) std::cout << "circle pressed" << std::endl;
+                            default: 
+                                break;
+                        }
+                    case event::axis:
+                    default:
+                        break;
+                }
+
+                std::this_thread::sleep_for (std::chrono::milliseconds(100));
             }
-            
-            std::this_thread::sleep_for (std::chrono::milliseconds(100));
-        }
+        });
     }
 };
 
