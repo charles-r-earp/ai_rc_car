@@ -35,8 +35,6 @@ struct ds4 {
         std::cout << "ds4()" << std::endl;
         system("ds4drv");
         
-        stopped = false;
-        
         std::cout << "update_thread()" << std::endl;
         update_thread = std::thread([&](){
             while (true) {
