@@ -4,9 +4,6 @@
 #include "joystick.hpp"
 #include "ds4.hpp"
 
-#include <thread>
-#include <chono>
-
 struct input {
     
     ds4 controller;
