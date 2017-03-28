@@ -49,7 +49,7 @@ struct joystick {
         return next_event;
     }
     
-    ~Joystick() {
+    ~joystick() {
         close(this->file);
     }
 };
