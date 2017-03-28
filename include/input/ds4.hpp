@@ -52,9 +52,9 @@ struct ds4 {
                 std::this_thread::sleep_for (std::chrono::seconds(1));
             }
             
-            std::cout << "found /dev/input/joy1" << std::endl; 
+            std::cout << "found /dev/input/joy" << number << std::endl; 
             
-            /*
+            
             while (true) {
                 //std::cout << "update" << std::endl;
                 joystick::event event = controller.get();
@@ -79,7 +79,7 @@ struct ds4 {
                 }
 
                 std::this_thread::sleep_for (std::chrono::milliseconds(100));
-            }*/
+            }
         });
     }
 };
