@@ -29,9 +29,9 @@ struct input {
         control_input inputs;
         
         switch(this->state) {
-            case State.Manual:
+            case State::Manual:
                 break;
-            case State.Autonomous:
+            case State::Autonomous:
                 break;
         }
     }
