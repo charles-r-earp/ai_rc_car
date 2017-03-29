@@ -54,7 +54,7 @@ struct joystick {
 
     joystick(int num = 0, bool block = true) {
         
-        this->read_thread = std::thread([&](){
+        this->read_thread = std::thread([&file, =num, =block](){
             do {
                 std::stringstream ss;
                 ss << "/dev/input/js" << num;
