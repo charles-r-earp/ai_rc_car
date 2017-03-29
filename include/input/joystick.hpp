@@ -31,6 +31,8 @@ struct joystick {
     
     struct event {
         
+        const static int min_axis_value = -32768, max_axis_value = 32767;
+        
         enum Type {
             Button = 0x01,
             Axis = 0x02,

@@ -3,6 +3,7 @@
 
 //#include <i2c-linux/pwm_driver.hpp>
 #include <cmath>
+#include <iostream>
 
 struct control {
 
@@ -15,6 +16,8 @@ struct control {
         
         // convert to ratio on interval (0, 1)
         double ratio = (steer_ratio + 1)/2.0;
+        
+        std::cout << "control.steer() ratio: " << ratio << std::endl;
         
         //pwm_driver.set_ratio(this->steering_servo, ratio);
     }

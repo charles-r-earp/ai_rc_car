@@ -35,10 +35,19 @@ struct input {
         
         switch(this->state) {
             case State::Manual:
+                inputs.steer_ratio = this->controller.right.x.value;
+                if (this->controller.L2.value) {
+                    inputs.drive_ratio = -this->controller.L2.value; // brake
+                }
+                else {
+                    inputs.drive_ratio = this->controller.R2.value; // go 
+                }
                 break;
             case State::Autonomous:
                 break;
         }
+        
+        return inputs;
     }
 };
 
