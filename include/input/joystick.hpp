@@ -65,7 +65,7 @@ struct joystick {
                 if (this->file > 0) break;
                 std::this_thread::sleep_for (std::chrono::seconds(10));
             }
-            std::cout << "joystick ready" << std::endl;
+            std::cout << "joystick ready file: " << this->file << std::endl;
         });
         
     }
