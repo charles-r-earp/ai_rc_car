@@ -37,7 +37,7 @@ struct ds4 {
         //std::cout << "ds4()" << std::endl;
         
         // creates /dev/input/joy1
-        this->ds4drv_thread = std::thread([](){ system("ds4drv"); });
+        //this->ds4drv_thread = std::thread([](){ system("ds4drv"); });
         
 
         //std::cout << "update_thread()" << std::endl;
