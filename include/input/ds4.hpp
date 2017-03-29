@@ -69,8 +69,7 @@ struct ds4 {
                             break;
                     }
                 }
-                
-                std::cout << std::endl;
+                if (!events.empty()) std::cout << std::endl;
 
                 std::this_thread::sleep_for (std::chrono::milliseconds(1));
             }
