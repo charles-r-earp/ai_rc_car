@@ -54,10 +54,14 @@ struct ds4 {
             
             std::cout << "found /dev/input/joy" << number << std::endl; 
             
+            for (auto event : controller.get_events()) {
+                
+            }
+            /*
             while (true) {
                 //std::cout << "update" << std::endl;
                 joystick::event event = controller.get();
-                /*
+                
                 joystick::event::Type type = event.get_type();
                 
                 switch (type) {
@@ -76,10 +80,12 @@ struct ds4 {
                     default:
                         std::cout << "Unkown!" << std::endl; 
                         break;
-                }*/
+                }
 
-                std::this_thread::sleep_for (std::chrono::milliseconds(1));
-            }
+                
+            }*/
+            
+            std::this_thread::sleep_for (std::chrono::milliseconds(1));
         });
     }
 };
