@@ -37,7 +37,7 @@ struct ds4 {
             using joystick::event;
             this->value = (raw_axis_value - event::min_axis_range)/(event::max_axis_range - event::min_axis_range);
         }
-    }
+    };
     
     struct thumbstick {
         axis x, y;
@@ -67,7 +67,7 @@ struct ds4 {
             
             while (true) {
                 
-                for (auto& event : this->controller.get_events();) {
+                for (auto& event : this->controller.get_events()) {
                     //std::cout << "read event" << std::endl;
                     
                     switch (event.type) {
