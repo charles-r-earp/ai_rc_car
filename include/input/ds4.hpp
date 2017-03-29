@@ -64,7 +64,7 @@ struct ds4 {
                             } 
                             break;
                         case joystick::event::Type::Axis:
-                            if (event.number < 4) {
+                            if (event.number >= 4 && event.number < 8) {
                                 ++count;
                                 std::cout << "[" << event.number << "]= " << event.value << " ";
                             } 
