@@ -55,15 +55,16 @@ struct joystick {
     joystick(int num = 0, bool block = true) {
         
         this->setup_thread = std::thread([this, num, block](){
-            do {
+            while(true) {
                 std::stringstream ss;
                 ss << "/dev/input/js" << num;
                 std::string path = ss.str();
                 this->file = open(path.c_str(), block ? O_RDONLY : O_RDONLY | O_NONBLOCK);
                 //std::cout << "joystick waiting...";
                 std::cout << "waiting for " << path << " file: " << file << " errorno: " << errno << std::endl;
+                if (this->file <= 0) break;
                 std::this_thread::sleep_for (std::chrono::seconds(10));
-            } while (this->file <= 0);
+            }
             std::cout << "joystick ready" << std::endl;
         });
         
