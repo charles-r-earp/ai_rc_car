@@ -71,6 +71,7 @@ struct joystick {
                 //events.push_back(event(next));
             }
             else break;
+            std::this_thread::sleep_for (std::chrono::milliseconds(1));
         }
         
         return events;
