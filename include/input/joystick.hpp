@@ -70,6 +70,10 @@ struct joystick {
         
     }
     
+    bool ready() {
+        return this->file > 0;
+    }
+    
     std::vector<event> get_events() {
         
         std::vector<event> events;
