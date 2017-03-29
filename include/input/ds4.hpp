@@ -38,16 +38,23 @@ struct ds4 {
         
         // creates /dev/input/joy1
         this->ds4drv_thread = std::thread([](){ system("ds4drv"); });
-        
 
-        //std::cout << "update_thread()" << std::endl;
-        /*
-        this->update_thread = std::thread([&](){
+        this->update_thread = std::thread([this](){
             
-            
+            for (auto& event : this->controller.get_events()) {
+                switch (event.type) {
+                    case joystick::event::Type::Button:
+                        if (event.value) {
+                            std::cout << "Button " << event.number << "pressed!" << std::endl;
+                        } 
+                        break;
+                    default:
+                        break;
+                }
+            }
             
             std::this_thread::sleep_for (std::chrono::milliseconds(1));
-        });*/
+        });
     }
 };
 
