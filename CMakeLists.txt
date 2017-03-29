@@ -9,6 +9,7 @@ if (CMAKE_VERSION VERSION_LESS "3.1")
     set (CMAKE_CXX_STANDARD 11)
 endif ()
 
+find_package(libevdev CONFIG REQUIRED)
 
 add_library(ai_rc_car INTERFACE)
 target_sources(ai_rc_car INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/include/ai_rc_car.hpp)
@@ -17,7 +18,7 @@ find_package(i2c-linux CONFIG REQUIRED)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include i2c-linux_INCLUDE_DIRS)
 
-target_link_libraries(ai_rc_car INTERFACE pthread)
+target_link_libraries(ai_rc_car INTERFACE pthread libevdev)
 
 add_executable(run src/run.cpp)
 target_link_libraries(run ai_rc_car)
