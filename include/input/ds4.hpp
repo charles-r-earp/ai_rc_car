@@ -13,7 +13,7 @@
 struct ds4 {
     
     std::thread ds4drv_thread, update_thread;
-    joystick controller = joystick(0, false);
+    joystick controller;
     
     struct button {
         bool pressed;
@@ -33,7 +33,7 @@ struct ds4 {
     thumbstick left, right;
     axis L2, R2;
     
-    ds4() {
+    ds4() : controller(0, false) {
         //std::cout << "ds4()" << std::endl;
         
         // creates /dev/input/joy1
