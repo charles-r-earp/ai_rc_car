@@ -8,7 +8,6 @@
 
 #include <thread>
 #include <chrono>
-#include <ctime> 
 
 struct ai_rc_car {
 
@@ -32,7 +31,7 @@ struct ai_rc_car {
     
     void update() {
         std::cout << "Update" << std::endl;
-        //input::control_input inputs = this->input_manager.get();
+        input::control_input inputs = this->input_manager.get();
         //this->controller.drive(inputs.drive_ratio);
         //this->controller.steer(inputs.steer_ratio);
         
