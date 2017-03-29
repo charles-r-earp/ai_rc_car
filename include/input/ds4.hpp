@@ -39,6 +39,7 @@ struct ds4 {
         // creates /dev/input/joy1
         this->ds4drv_thread = std::thread([](){ system("ds4drv"); });
 
+        /*
         this->update_thread = std::thread([this](){
             
             while (true) {
@@ -47,7 +48,7 @@ struct ds4 {
 
                 for (auto& event : events) {
                     std::cout << "read event" << std::endl;
-                    /*
+                    
                     switch (event.type) {
                         case joystick::event::Type::Button:
                             if (event.value) {
@@ -56,14 +57,14 @@ struct ds4 {
                             break;
                         default:
                             break;
-                    }*/
+                    }
                 }
 
                 std::this_thread::sleep_for (std::chrono::milliseconds(1));
             }
             
             
-        });
+        });*/
     }
 };
 
