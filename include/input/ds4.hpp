@@ -47,7 +47,7 @@ struct ds4 {
     
     button circle, triangle, square, cross;
     button share, options, PS;
-    button L1, R1;
+    button L1, R1, L3, R3;
 
     thumbstick left, right;
     trigger L2, R2;
