@@ -54,6 +54,8 @@ struct joystick {
 
     joystick(int num = 0, bool block = true) {
         
+        this->file = -1;
+        
         this->setup_thread = std::thread([this, num, block](){
             while(true) {
                 std::stringstream ss;
