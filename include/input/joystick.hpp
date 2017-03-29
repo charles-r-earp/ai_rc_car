@@ -67,7 +67,7 @@ struct joystick {
         while (true) {
             bytes = read(this->file, next, sizeof(*next)); 
             if (bytes > 0) { 
-                std::cout << "joystick.get_events() js_event.type = " << int(next.type) << std::endl;
+                std::cout << "joystick.get_events() js_event.type = " << int(next->type) << std::endl;
                 //events.push_back(event(next));
             }
             else break;
