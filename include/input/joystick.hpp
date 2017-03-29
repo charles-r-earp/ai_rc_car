@@ -60,7 +60,7 @@ struct joystick {
             do {
                 file = open(path.c_str(), block ? O_RDONLY : O_RDONLY | O_NONBLOCK);
             } while (file <= 0);
-            std::cout << "joystick ready" << std::end;
+            std::cout << "joystick ready" << std::endl;
         });
         
     }
