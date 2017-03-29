@@ -18,18 +18,18 @@ struct joystick {
     int file;
     
     struct js_event {
-		__u32 time;     /* event timestamp in milliseconds */
-		__s16 value;    /* value */
-		__u8 type;      /* event type */
-		__u8 number;    /* axis/button number */
+		unsigned int time;     /* event timestamp in milliseconds */
+        short value; /* value */
+		unsigned char type;      /* event type */
+		unsigned char number;    /* axis/button number */
 	};
     
     struct event {
         
         enum Type {
-            Init = 0x00,
             Button = 0x01,
-            Axis = 0x02
+            Axis = 0x02,
+            Init = 0x80
         };
         
         event(const js_event& js_ev) {
