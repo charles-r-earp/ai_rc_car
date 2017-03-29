@@ -71,6 +71,7 @@ struct joystick {
     }
     
     bool ready() {
+        std::cout << "ready() file: " << this->file << " => ready? = " << this->file > 0 << std::endl;
         return this->file > 0;
     }
     
