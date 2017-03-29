@@ -21,7 +21,6 @@ struct input {
     input(State state = State::Manual) {
         this->state = state;
         
-        this->controller.init();
     }
     
     

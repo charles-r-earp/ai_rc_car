@@ -19,6 +19,7 @@
 
 struct joystick {
     
+    std::thread read_thread;
     int file;
     
     struct js_event {
@@ -51,31 +52,26 @@ struct joystick {
     
     
 
-    bool init(int num = 0, bool block = true) {
+    joystick(int num = 0, bool block = true) {
         std::stringstream ss;
         ss << "/dev/input/js" << num;
         std::string path = ss.str();
-        this->file = open(path.c_str(), block ? O_RDONLY : O_RDONLY | O_NONBLOCK);
-        std::cout << "joystick() file = " << this->file << std::endl;
-        printf ("Error no is : %d\n", errno);
+        this->read_thread = std::thread([&](){
+            do {
+                file = open(path.c_str(), block ? O_RDONLY : O_RDONLY | O_NONBLOCK);
+            } while (file <= 0);
+            std::cout << "joystick ready" << std::end;
+        });
         
-        return this->file >= 0;
     }
     
     std::vector<event> get_events() {
         
         std::vector<event> events;
         
-        int bytes;
-        js_event* next;
-        while (true) {
-            bytes = read(this->file, next, sizeof(*next)); 
-            if (bytes > 0) { 
-                std::cout << "joystick.get_events() js_event.type = " << int(next->type) << std::endl;
-                //events.push_back(event(next));
-            }
-            else break;
-            std::this_thread::sleep_for (std::chrono::milliseconds(1));
+        js_event next;
+        while (read(this->file, &next, sizeof(next)) > 0) {
+            events.push_back(event(next));
         }
         
         return events;
