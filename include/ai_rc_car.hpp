@@ -21,7 +21,7 @@ struct ai_rc_car {
         while(true) {
             
             timer_thread = std::thread([](){
-                std::this_thread::sleep_for (std::chrono::milliseconds(100));
+                std::this_thread::sleep_for (std::chrono::milliseconds(1000));
             });
             
             this->update();
@@ -31,10 +31,10 @@ struct ai_rc_car {
     }
     
     void update() {
-        
-        input::control_input inputs = this->input_manager.get();
-        this->controller.drive(inputs.drive_ratio);
-        this->controller.steer(inputs.steer_ratio);
+        std::cout << "Update" << std::endl;
+        //input::control_input inputs = this->input_manager.get();
+        //this->controller.drive(inputs.drive_ratio);
+        //this->controller.steer(inputs.steer_ratio);
         
     }
     
