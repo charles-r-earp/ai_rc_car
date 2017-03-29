@@ -42,12 +42,12 @@ struct ds4 {
         this->update_thread = std::thread([this](){
             
             while (true) {
-            
+                
                 std::vector<joystick::event> events = this->controller.get_events();
 
-                std::cout << "read " << events.size() << " events." << std::endl;
-
                 for (auto& event : events) {
+                    std::cout << "read event" << std::endl;
+                    /*
                     switch (event.type) {
                         case joystick::event::Type::Button:
                             if (event.value) {
@@ -56,7 +56,7 @@ struct ds4 {
                             break;
                         default:
                             break;
-                    }
+                    }*/
                 }
 
                 std::this_thread::sleep_for (std::chrono::milliseconds(1));

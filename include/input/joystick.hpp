@@ -78,6 +78,9 @@ struct joystick {
         while (read(this->file, &next, sizeof(next)) > 0) {
             events.push_back(event(next));
         }
+        if (errno != EAGAIN) {
+            std::cout << "get_events error: " << errno << std::endl;
+        }
         
         return events;
     }
