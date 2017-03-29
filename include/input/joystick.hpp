@@ -73,7 +73,7 @@ struct joystick {
     }
     
     bool ready() {
-        std::cout << "ready() file: " << this->file << " => ready? = " << (this->file > 0) << std::endl;
+        //std::cout << "ready() file: " << this->file << " => ready? = " << (this->file > 0) << std::endl;
         return this->file > 0;
     }
     
@@ -87,6 +87,7 @@ struct joystick {
         }
         if (errno != EAGAIN) {
             std::cout << "get_events error: " << errno << std::endl;
+            abort();
         }
         
         return events;
