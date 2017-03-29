@@ -56,7 +56,8 @@ struct joystick {
         std::stringstream ss;
         ss << "/dev/input/js" << num;
         std::string path = ss.str();
-        this->read_thread = std::thread([&](){
+        
+        auto func = [&](){
             do {
                 file = open(path.c_str(), block ? O_RDONLY : O_RDONLY | O_NONBLOCK);
                 //std::cout << "joystick waiting...";
@@ -64,7 +65,9 @@ struct joystick {
                 std::this_thread::sleep_for (std::chrono::seconds(1));
             } while (file <= 0);
             std::cout << "joystick ready" << std::endl;
-        });
+        };
+        
+        this->read_thread = std::thread(func);
         
     }
     
