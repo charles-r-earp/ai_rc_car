@@ -62,7 +62,7 @@ struct joystick {
                 this->file = open(path.c_str(), block ? O_RDONLY : O_RDONLY | O_NONBLOCK);
                 //std::cout << "joystick waiting...";
                 std::cout << "waiting for " << path << " file: " << file << " errorno: " << errno << std::endl;
-                if (this->file <= 0) break;
+                if (this->file > 0) break;
                 std::this_thread::sleep_for (std::chrono::seconds(10));
             }
             std::cout << "joystick ready" << std::endl;
