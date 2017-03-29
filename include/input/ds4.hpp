@@ -41,23 +41,28 @@ struct ds4 {
 
         this->update_thread = std::thread([this](){
             
-            std::vector<joystick::event> events = this->controller.get_events();
+            while (true) {
             
-            std::cout << "read " << events.size() << " events." << std::endl;
-            
-            for (auto& event : events) {
-                switch (event.type) {
-                    case joystick::event::Type::Button:
-                        if (event.value) {
-                            std::cout << "Button " << event.number << "pressed!" << std::endl;
-                        } 
-                        break;
-                    default:
-                        break;
+                std::vector<joystick::event> events = this->controller.get_events();
+
+                std::cout << "read " << events.size() << " events." << std::endl;
+
+                for (auto& event : events) {
+                    switch (event.type) {
+                        case joystick::event::Type::Button:
+                            if (event.value) {
+                                std::cout << "Button " << event.number << "pressed!" << std::endl;
+                            } 
+                            break;
+                        default:
+                            break;
+                    }
                 }
+
+                std::this_thread::sleep_for (std::chrono::milliseconds(1));
             }
             
-            std::this_thread::sleep_for (std::chrono::milliseconds(1));
+            
         });
     }
 };
