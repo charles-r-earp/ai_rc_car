@@ -63,7 +63,7 @@ struct ds4 {
                             break;
                         case joystick::event::Type::Axis:
                             if (event.value) {
-                                std::cout << "Axis " << event.number << " " << event.value << std::endl;
+                                //std::cout << "Axis " << event.number << " " << event.value << std::endl;
                             } 
                         default:
                             break;
