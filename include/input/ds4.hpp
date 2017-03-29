@@ -58,17 +58,19 @@ struct ds4 {
                     switch (event.type) {
                         case joystick::event::Type::Button:
                             if (event.value) {
-                                std::cout << "Button " << event.number << "pressed!" << std::endl;
+                                //std::cout << "Button " << event.number << "pressed!" << std::endl;
                             } 
                             break;
                         case joystick::event::Type::Axis:
-                            if (event.value) {
-                                //std::cout << "Axis " << event.number << " " << event.value << std::endl;
+                            if (event.number < 4) {
+                                std::cout << "[" << event.number << "]= " << event.value << " ";
                             } 
                         default:
                             break;
                     }
                 }
+                
+                std::cout << std::endl;
 
                 std::this_thread::sleep_for (std::chrono::milliseconds(1));
             }
