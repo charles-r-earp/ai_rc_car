@@ -53,7 +53,7 @@ struct ds4 {
                 std::vector<joystick::event> events = this->controller.get_events();
 
                 for (auto& event : events) {
-                    std::cout << "read event" << std::endl;
+                    //std::cout << "read event" << std::endl;
                     
                     switch (event.type) {
                         case joystick::event::Type::Button:
@@ -61,6 +61,10 @@ struct ds4 {
                                 std::cout << "Button " << event.number << "pressed!" << std::endl;
                             } 
                             break;
+                        case joystick::event::Type::Axis:
+                            if (event.value) {
+                                std::cout << "Axis " << event.number << " " << event.value << std::endl;
+                            } 
                         default:
                             break;
                     }
