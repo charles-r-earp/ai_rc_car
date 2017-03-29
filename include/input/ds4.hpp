@@ -13,7 +13,7 @@
 struct ds4 {
     
     std::thread ds4drv_thread, update_thread;
-    joystick controller;
+    joystick controller(0, false);
     
     struct button {
         bool pressed;
