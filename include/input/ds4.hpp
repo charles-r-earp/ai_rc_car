@@ -136,7 +136,7 @@ struct ds4 {
                                     this->R2.set(event.value);
                                     break;
                                 case 5:
-                                    this->right.set(-event.value);
+                                    this->right.y.set(-event.value);
                                     break;
                                 default:
                                     break;
