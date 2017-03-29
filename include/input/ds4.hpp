@@ -57,7 +57,7 @@ struct ds4 {
             while (true) {
                 //std::cout << "update" << std::endl;
                 joystick::event event = controller.get();
-                
+                /*
                 joystick::event::Type type = event.get_type();
                 
                 switch (type) {
@@ -76,9 +76,9 @@ struct ds4 {
                     default:
                         std::cout << "Unkown!" << std::endl; 
                         break;
-                }
+                }*/
 
-                std::this_thread::sleep_for (std::chrono::milliseconds(100));
+                std::this_thread::sleep_for (std::chrono::milliseconds(1));
             }
         });
     }

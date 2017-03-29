@@ -48,6 +48,8 @@ struct joystick {
         
         read(this->file, &next_event, sizeof(next_event)); 
         
+        std::cout << "joystick.get() event.type = " << next_event.type << std::endl;
+        
         return next_event;
     }
     
