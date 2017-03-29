@@ -25,8 +25,9 @@ struct ds4 {
         double value; // -1, 1
         
         void set(int raw_axis_value) {
-            using joystick::event;
-            this->value = 2*(raw_axis_value - event::min_axis_range)/(event::max_axis_range - event::min_axis_range) -1;
+            int _min = joystick::event::axis_min_range;
+            int _max = joystick::event::axis_max_range;
+            this->value = 2*(raw_axis_value - _min)/(_max - _min) - 1;
         }
     };
     
@@ -34,8 +35,9 @@ struct ds4 {
         double value; // 0, 1 -> 1 fully pressed
         
         void set(int raw_axis_value) {
-            using joystick::event;
-            this->value = (raw_axis_value - event::min_axis_range)/(event::max_axis_range - event::min_axis_range);
+            int _min = joystick::event::axis_min_range;
+            int _max = joystick::event::axis_max_range;
+            this->value = (raw_axis_value - _min)/(_max - _min);
         }
     };
     
