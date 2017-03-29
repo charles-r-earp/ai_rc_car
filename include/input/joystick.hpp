@@ -59,7 +59,7 @@ struct joystick {
         
         this->read_thread = std::thread([&](){
             do {
-                file = open(path.c_str(), block ? O_RDONLY : O_RDONLY | O_NONBLOCK);
+                //file = open(path.c_str(), block ? O_RDONLY : O_RDONLY | O_NONBLOCK);
                 //std::cout << "joystick waiting...";
                 std::cout << "waiting for " << path << " file: " << file << " errorno: " << errno << std::endl;
                 std::this_thread::sleep_for (std::chrono::seconds(10));
