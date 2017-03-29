@@ -62,13 +62,13 @@ struct joystick {
         
         std::vector<event> events;
         
-        int error;
-        js_event next;
+        int bytes;
+        js_event* next;
         while (true) {
-            error = read(this->file, &next, sizeof(event)); 
-            if (error > 0) { 
-                std::cout << "joystick.get_events() js_event.type = " << next.type << std::endl;
-                events.push_back(event(next));
+            bytes = read(this->file, next, sizeof(*next)); 
+            if (bytes > 0) { 
+                std::cout << "joystick.get_events() js_event.type = " << int(next.type) << std::endl;
+                //events.push_back(event(next));
             }
             else break;
         }
