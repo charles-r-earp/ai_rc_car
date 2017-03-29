@@ -53,12 +53,12 @@ struct joystick {
     
 
     joystick(int num = 0, bool block = true) {
-        std::stringstream ss;
-        ss << "/dev/input/js" << num;
-        std::string path = ss.str();
         
         this->read_thread = std::thread([&](){
             do {
+                std::stringstream ss;
+                ss << "/dev/input/js" << num;
+                std::string path = ss.str();
                 //file = open(path.c_str(), block ? O_RDONLY : O_RDONLY | O_NONBLOCK);
                 //std::cout << "joystick waiting...";
                 std::cout << "waiting for " << path << " file: " << file << " errorno: " << errno << std::endl;
