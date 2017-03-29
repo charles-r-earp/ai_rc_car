@@ -51,6 +51,8 @@ struct ds4 {
             while (true) {
                 
                 std::vector<joystick::event> events = this->controller.get_events();
+                
+                int count = 0;
 
                 for (auto& event : events) {
                     //std::cout << "read event" << std::endl;
@@ -63,13 +65,14 @@ struct ds4 {
                             break;
                         case joystick::event::Type::Axis:
                             if (event.number < 4) {
+                                ++count;
                                 std::cout << "[" << event.number << "]= " << event.value << " ";
                             } 
                         default:
                             break;
                     }
                 }
-                if (!events.empty()) std::cout << std::endl;
+                if (count) std::cout << std::endl;
 
                 std::this_thread::sleep_for (std::chrono::milliseconds(1));
             }
