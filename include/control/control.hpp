@@ -13,8 +13,9 @@ struct control {
     
     control() : steering_servo(0) {
         
-        this->steering_servo.start = 0.3;
-        this->steering_servo.end = 0.7;
+        // endpoints and reverse direction
+        this->steering_servo.start = 0.7;
+        this->steering_servo.end = 0.3;
     }
     
     void steer(const double& steer_ratio) {
