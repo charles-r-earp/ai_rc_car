@@ -14,8 +14,8 @@ struct control {
     control() {
         
         this->steering_servo = i2c_linux::pwm_driver::servo(0);
-        this->steering_servo.start = 0.4;
-        this->steering_servo.end = 0.6;
+        //this->steering_servo.start = 0.4;
+        //this->steering_servo.end = 0.6;
     }
     
     void steer(const double& steer_ratio) {
