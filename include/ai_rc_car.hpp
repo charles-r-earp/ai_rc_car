@@ -11,7 +11,7 @@
 #include <ctime>
 #include <cstdio>
 
-/ Get current date/time, format is YYYY-MM-DD.HH:mm:ss
+// Get current date/time, format is YYYY-MM-DD.HH:mm:ss
 std::string currentDateTime() {
     time_t     now = time(0);
     struct tm  tstruct;
