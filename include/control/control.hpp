@@ -14,8 +14,8 @@ struct control {
     control() : steering_servo(0) {
         
         // endpoints and reverse direction
-        this->steering_servo.start = 0.45;
-        this->steering_servo.end = 0.55;
+        this->steering_servo.start = 0.42;
+        this->steering_servo.end = 0.58;
         this->steering_servo.reversed = true;
     }
     
