@@ -1,7 +1,7 @@
 #ifndef AI_RC_CAR_CONTROL_CONTROL_HPP
 #define AI_RC_CAR_CONTROL_CONTROL_HPP
 
-#include <i2c-linux/pwm_driver.hpp>
+#include <i2c-linux/i2c_linux.hpp>
 #include <cmath>
 #include <iostream>
 
