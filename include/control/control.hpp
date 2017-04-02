@@ -19,7 +19,7 @@ struct control {
         
         std::cout << "control.steer() ratio: " << ratio << std::endl;
                                    
-        //pwm_driver.set_ratio(this->steering_servo, ratio);
+        pwm_driver.set_ratio(this->steering_servo, ratio);
     }
     
     void drive(const double& speed_ratio) {
