@@ -7,9 +7,9 @@
 
 struct control {
 
-    const i2c_linux::pwm_driver::servo steering_servo;
+    i2c_linux::pwm_driver::servo steering_servo;
     //const i2c-linux::pwm_driver::bidirectional_motor drive_motor(4, 5);
-    const i2c_linux::pwm_driver pwm_driver;
+    i2c_linux::pwm_driver pwm_driver;
     
     control() {
         
