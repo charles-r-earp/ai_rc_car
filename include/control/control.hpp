@@ -7,9 +7,9 @@
 
 struct control {
 
-    const i2c-linux::pwm_driver::servo steering_servo(0);
-    const i2c-linux::pwm_driver::bidirectional_motor drive_motor(4, 5);
-    const i2c-linux::pwm_driver pwm_driver;
+    const i2c_linux::pwm_driver::servo steering_servo(0);
+    //const i2c-linux::pwm_driver::bidirectional_motor drive_motor(4, 5);
+    const i2c_linux::pwm_driver pwm_driver;
     
     void steer(const double& steer_ratio) {
         // steer ratio is on the interval (-1, 1) with 1 being a left turn and -1 a right turn
@@ -18,7 +18,7 @@ struct control {
         double ratio = (steer_ratio + 1)/2.0;
         
         std::cout << "control.steer() ratio: " << ratio << std::endl;
-        
+                                   
         pwm_driver.set_ratio(this->steering_servo, ratio);
     }
     
