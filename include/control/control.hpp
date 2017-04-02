@@ -11,9 +11,7 @@ struct control {
     //const i2c-linux::pwm_driver::bidirectional_motor drive_motor(4, 5);
     i2c_linux::pwm_driver pwm_driver;
     
-    control() {
-        
-        this->steering_servo = i2c_linux::pwm_driver::servo(0);
+    control() : steering_servo(0) {
         //this->steering_servo.start = 0.4;
         //this->steering_servo.end = 0.6;
     }
