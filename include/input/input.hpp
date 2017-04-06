@@ -43,6 +43,7 @@ struct input {
                     inputs.drive_ratio = this->controller.R2.value; // go 
                 }
                 if (int(this->controller.digital.x.value)) {
+                    abort();
                     inputs.steering_trim_direction = this->controller.digital.x.value > 0 ? 1 : -1;
                 }
                 break;
