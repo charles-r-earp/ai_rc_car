@@ -49,7 +49,7 @@ struct ai_rc_car {
         input::control_input inputs = this->input_manager.get();
         this->controller.drive(inputs.drive_ratio);
         this->controller.steer(inputs.steer_ratio);
-        
+        this->controller.steering_trim(inputs.steering_trim_direction);
     }
     
 };

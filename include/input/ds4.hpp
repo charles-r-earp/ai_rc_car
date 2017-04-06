@@ -50,6 +50,8 @@ struct ds4 {
     button L1, R1, L3, R3;
 
     thumbstick left, right;
+    thumbstick digital;
+    
     trigger L2, R2;
     
     ds4() : controller(0, false) {
@@ -144,8 +146,9 @@ struct ds4 {
                                 case 9:
                                 case 10:
                                 case 11:
+                                    this->digital.x.set(event.value);
+                                    break;
                                 case 12:
-                                    std::cout << "axis: " << event.number << std::endl; 
                                 default:
                                     break;
                             }

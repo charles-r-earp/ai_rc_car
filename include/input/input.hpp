@@ -15,7 +15,7 @@ struct input {
     State state;
     
     struct control_input {
-        double steer_ratio, drive_ratio;  
+        double steer_ratio, drive_ratio, steering_trim_direction;  
     };
     
     input(State state = State::Manual) {
@@ -41,6 +41,9 @@ struct input {
                 }
                 else {
                     inputs.drive_ratio = this->controller.R2.value; // go 
+                }
+                if (this->controller.digital.x) {
+                    inputs.trim_direction = this->controller.digital.x > 0 ? 1 : -1;
                 }
                 break;
             case State::Autonomous:
