@@ -146,9 +146,11 @@ struct ds4 {
                                 case 9:
                                 case 10:
                                 case 11:
-                                    this->digital.x.set(event.value);
+                                    
                                     break;
                                 case 12:
+                                    this->digital.x.set(event.value);
+                                    break;
                                 default:
                                     break;
                             }
