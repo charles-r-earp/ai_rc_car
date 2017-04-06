@@ -42,8 +42,8 @@ struct input {
                 else {
                     inputs.drive_ratio = this->controller.R2.value; // go 
                 }
-                if (this->controller.digital.x) {
-                    inputs.steering_trim_direction = this->controller.digital.x > 0 ? 1 : -1;
+                if (this->controller.digital.x.value) {
+                    inputs.steering_trim_direction = this->controller.digital.x.value > 0 ? 1 : -1;
                 }
                 break;
             case State::Autonomous:
