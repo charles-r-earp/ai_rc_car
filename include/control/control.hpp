@@ -14,8 +14,8 @@ struct control {
     control() : steering_servo(0), drive_motor(4) {
         
         // endpoints and reverse direction
-        this->steering_servo.start = 0.42;
-        this->steering_servo.end = 0.58;
+        this->steering_servo.start = 0.40;
+        this->steering_servo.end = 0.60;
         this->steering_servo.reversed = true;
         
     }
@@ -29,6 +29,19 @@ struct control {
         std::cout << "control.steer() ratio: " << ratio << std::endl;
                                    
         pwm_driver.set_ratio(this->steering_servo, ratio);
+    }
+    
+    void steering_trim(const int direction) {
+        
+        double trim = this->steering_servo.trim;
+        trim += direction * 0.01;
+        
+        trim = std::min(trim, this->steering_servo.start);
+        trim = std::max(trim, this->steering_servo.end);
+        
+        this->steering_servo.trim = trim;
+        
+        std::cout << "control.steering_trim() trim: " << trim << std::endl;
     }
     
     void drive(const double& speed_ratio) {

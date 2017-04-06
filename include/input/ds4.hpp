@@ -138,6 +138,14 @@ struct ds4 {
                                 case 5:
                                     this->right.y.set(-event.value);
                                     break;
+                                case 6:
+                                case 7:
+                                case 8:
+                                case 9:
+                                case 10:
+                                case 11:
+                                case 12:
+                                    std::cout << "axis: " << event.number << std::endl; 
                                 default:
                                     break;
                             }
