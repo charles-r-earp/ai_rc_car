@@ -141,6 +141,8 @@ struct ds4 {
                                     this->right.y.set(-event.value);
                                     break;
                                 case 6:
+                                    this->digital.x.set(event.value);
+                                    break;
                                 case 7:
                                 case 8:
                                 case 9:
@@ -149,7 +151,6 @@ struct ds4 {
                                     
                                     break;
                                 case 12:
-                                    this->digital.x.set(event.value);
                                     break;
                                 default:
                                     break;
