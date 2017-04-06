@@ -36,8 +36,8 @@ struct control {
         double trim = this->steering_servo.trim;
         trim += direction * 0.01;
         
-        trim = std::min(trim, this->steering_servo.start);
-        trim = std::max(trim, this->steering_servo.end);
+        //trim = std::max(trim, this->steering_servo.start);
+        //trim = std::min(trim, this->steering_servo.end);
         
         this->steering_servo.trim = trim;
         
