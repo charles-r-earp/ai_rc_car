@@ -35,6 +35,7 @@ struct control {
         // speed ratio is interval (-1, 1) with 1 being forward, -1 being reverse
         
         double ratio = (speed_ratio + 1)/2.0;
+        std::cout << "control.drive() ratio: " << ratio << std::endl;
         
         pwm_driver.set_ratio(this->drive_motor, ratio);
         

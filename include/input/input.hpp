@@ -36,7 +36,7 @@ struct input {
         switch(this->state) {
             case State::Manual:
                 inputs.steer_ratio = this->controller.right.x.value;
-                if (this->controller.L2.value) {
+                if (this->controller.L2.value > 0.1) {
                     inputs.drive_ratio = -this->controller.L2.value; // brake
                 }
                 else {
