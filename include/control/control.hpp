@@ -8,15 +8,16 @@
 struct control {
 
     i2c_linux::pwm_driver::servo steering_servo;
-    //const i2c-linux::pwm_driver::bidirectional_motor drive_motor(4, 5);
+    i2c_linux::pwm_driver::servo drive_motor;
     i2c_linux::pwm_driver pwm_driver;
     
-    control() : steering_servo(0) {
+    control() : steering_servo(0), drive_motor(4) {
         
         // endpoints and reverse direction
         this->steering_servo.start = 0.42;
         this->steering_servo.end = 0.58;
         this->steering_servo.reversed = true;
+        
     }
     
     void steer(const double& steer_ratio) {
@@ -33,10 +34,9 @@ struct control {
     void drive(const double& speed_ratio) {
         // speed ratio is interval (-1, 1) with 1 being forward, -1 being reverse
         
-        double duty = std::abs(speed_ratio);
-        int direction = speed_ratio >= 0 ? 1 : -1; 
+        double ratio = (speed_ratio + 1)/2.0;
         
-        //pwm_driver.set_duty(this->drive_motor, duty, direction);
+        pwm_driver.set_ratio(this->drive_motor, ratio);
         
     }
     
