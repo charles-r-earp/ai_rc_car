@@ -5,7 +5,7 @@
 
 int main() {
 
-    car rc_car;
+    ai_rc_car rc_car;
     
     float speed = 0;
     int direction;
