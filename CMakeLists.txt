@@ -20,3 +20,5 @@ target_link_libraries(ai_rc_car INTERFACE pthread)
 
 add_executable(run src/run.cpp)
 target_link_libraries(run ai_rc_car)
+
+add_subdirectory(tests)
