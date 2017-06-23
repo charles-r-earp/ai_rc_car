@@ -10,6 +10,8 @@ int main() {
     float speed = 0;
     int direction;
     
+    std::thread run_thread(rc_car.run);
+    
     while (true) {
     
         if (speed > 1) {
