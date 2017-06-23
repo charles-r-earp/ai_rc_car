@@ -22,7 +22,7 @@ int main() {
             rc_car.controller.drive(speed);
         }
         
-        speed = 0.1 * direction;
+        speed += 0.1 * direction;
         std::this_thread::sleep_for (std::chrono::seconds(1));
     }
     
