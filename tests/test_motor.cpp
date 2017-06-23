@@ -8,7 +8,7 @@ int main() {
     ai_rc_car rc_car;
     
     float speed = 0;
-    int direction;
+    int direction = 1;
     
     while (true) {
     
