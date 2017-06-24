@@ -23,7 +23,7 @@ int main() {
         }
         
         speed += 0.1 * direction;
-        std::this_thread::sleep_for (std::chrono::seconds(1));
+        std::this_thread::sleep_for (std::chrono::seconds(4));
     }
     
     return 0;
