@@ -51,9 +51,9 @@ struct ai_rc_car {
     std::thread ds4_thread;
     
     ai_rc_car() {
-        ds4_thread = std::thread([&]{
+        //ds4_thread = std::thread([&]{
             exec("ds4drv");
-        });
+        //});
     }
     
     void run() {
