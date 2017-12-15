@@ -16,6 +16,7 @@
 //#include <thread>
 #include <chrono>
 #include <vector>
+#include <iostream>
 
 struct joystick {
     
@@ -78,10 +79,11 @@ struct joystick {
     }
     
     std::vector<event> get_events() {
-      std::vector<event> events;/*
+      std::vector<event> events;
       if(this->ready()) {  
         js_event next;
         while (read(this->file, &next, sizeof(next)) > 0) {
+            std::cout << "nevents: " << read(this->file, &next, sizeof(next)) << std::endl;
             events.push_back(event(next));
         }
         if (errno != EAGAIN) {
@@ -98,7 +100,7 @@ struct joystick {
          std::cout << "waiting for " << path << " file: " << file << " errorno: " << errno << std::endl;
          if(this->file > 0) 
            std::cout << "joystick ready file: " << this->file << std::endl;
-      }*/
+      }
       return events;
     }
     
