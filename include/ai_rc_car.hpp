@@ -50,9 +50,9 @@ struct ai_rc_car {
     std::thread ds4_thread;
     
     ai_rc_car() {
-        //ds4_thread = std::thread([&]{
+        ds4_thread = std::thread([&]{
             exec("ds4drv");
-        //});
+        });
     }
     
     void run() {
@@ -75,7 +75,6 @@ struct ai_rc_car {
         input::control_input inputs = this->input_manager.get();
         this->controller.drive(inputs.drive_ratio);
         this->controller.steer(inputs.steer_ratio);
-        this->controller.steering_trim(inputs.steering_trim_direction);
     }
     
 };
