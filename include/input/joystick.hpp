@@ -13,14 +13,15 @@
 
 #include <errno.h>
 
-#include <thread>
+//#include <thread>
 #include <chrono>
 #include <vector>
 
 struct joystick {
     
-    std::thread setup_thread;
-    int file;
+    int num;
+    bool block;
+    int file = -1;
     
     struct js_event {
       unsigned int time;     /* event timestamp in milliseconds */
@@ -54,11 +55,8 @@ struct joystick {
     
     
 
-    joystick(int num = 0, bool block = true) {
-        
-        this->file = -1;
-        
-        this->setup_thread = std::thread([this, num, block](){
+    joystick(int num = 0, bool block = true) : num(num), block(block) {
+        /*this->setup_thread = std::thread([this, num, block](){
             while(true) {
                 std::stringstream ss;
                 ss << "/dev/input/js" << num;
@@ -70,7 +68,7 @@ struct joystick {
                 std::this_thread::sleep_for (std::chrono::seconds(10));
             }
             std::cout << "joystick ready file: " << this->file << std::endl;
-        });
+        });*/
         
     }
     
@@ -90,7 +88,17 @@ struct joystick {
             std::cout << "get_events error: " << errno << std::endl;
             abort();
         }
-      }  
+      }
+      else {
+         std::stringstream ss;
+         ss << "/dev/input/js" << this->num;
+         std::string path = ss.str();
+         this->file = open(path.c_str(), this->block ? O_RDONLY : O_RDONLY | O_NONBLOCK);
+         //std::cout << "joystick waiting...";
+         std::cout << "waiting for " << path << " file: " << file << " errorno: " << errno << std::endl;
+         if(this->file > 0) 
+           std::cout << "joystick ready file: " << this->file << std::endl;
+      }
       return events;
     }
     
