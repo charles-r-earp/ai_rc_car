@@ -11,7 +11,7 @@ endif ()
 
 add_library(ai_rc_car INTERFACE)
 target_sources(ai_rc_car INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/include/ai_rc_car.hpp)
-target_include_directories(ai_rc_car INTERFACE submodules/i2c-linux/include submodules/i2c-linux/submodules/i2c-tools/include)
+target_include_directories(ai_rc_car INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/submodules/i2c-linux/include ${CMAKE_CURRENT_SOURCE_DIR}/submodules/i2c-linux/submodules/i2c-tools/include)
 
 #find_package(i2c-linux CONFIG REQUIRED)
 
