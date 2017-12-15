@@ -5,7 +5,7 @@
 #include "control/control.hpp"
 #include "input/input.hpp"
 
-#include <thread>
+//#include <thread>
 #include <chrono>
 #include <ctime>
 #include <cstdio>
@@ -30,7 +30,7 @@ std::string currentDateTime() {
 //#include <string>
 #include <array>
 
-std::string exec(const char* cmd) {
+/*std::string exec(const char* cmd) {
     std::array<char, 128> buffer;
     std::string result;
     std::shared_ptr<FILE> pipe(popen(cmd, "r"), pclose);
@@ -40,20 +40,12 @@ std::string exec(const char* cmd) {
             result += buffer.data();
     }
     return result;
-}
+}*/
 
 struct ai_rc_car {
 
-    control controller;
-    input input_manager;
-    
-    std::thread ds4_thread;
-    
-    ai_rc_car() {
-        ds4_thread = std::thread([&]{
-            exec("ds4drv");
-        });
-    }
+    //control controller;
+    //input input_manager;
     
     void run() {
         bool next_update = true;
@@ -72,9 +64,9 @@ struct ai_rc_car {
     
     void update() {
         std::cout << "Update " << currentDateTime() << std::endl;
-        input::control_input inputs = this->input_manager.get();
-        this->controller.drive(inputs.drive_ratio);
-        this->controller.steer(inputs.steer_ratio);
+        //input::control_input inputs = this->input_manager.get();
+        //this->controller.drive(inputs.drive_ratio);
+        //this->controller.steer(inputs.steer_ratio);
     }
     
 };

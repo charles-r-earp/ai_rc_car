@@ -22,4 +22,6 @@ target_link_libraries(ai_rc_car INTERFACE pthread)
 add_executable(run src/run.cpp)
 target_link_libraries(run ai_rc_car)
 
-add_subdirectory(tests)
+file(COPY run.sh DESTINATION "${CMAKE_BINARY_DIR}" FILE_PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE)
+
+#add_subdirectory(tests)
