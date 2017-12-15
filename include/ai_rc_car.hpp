@@ -5,7 +5,6 @@
 #include "control/control.hpp"
 #include "input/input.hpp"
 
-
 #include <thread>
 #include <chrono>
 #include <ctime>
