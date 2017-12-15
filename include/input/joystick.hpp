@@ -78,7 +78,7 @@ struct joystick {
     }
     
     std::vector<event> get_events() {
-      std::vector<event> events;
+      std::vector<event> events;/*
       if(this->ready()) {  
         js_event next;
         while (read(this->file, &next, sizeof(next)) > 0) {
@@ -98,7 +98,7 @@ struct joystick {
          std::cout << "waiting for " << path << " file: " << file << " errorno: " << errno << std::endl;
          if(this->file > 0) 
            std::cout << "joystick ready file: " << this->file << std::endl;
-      }
+      }*/
       return events;
     }
     
