@@ -1,0 +1,6 @@
+[submodule "submodules/ds4drv"]
+	path = submodules/ds4drv
+	url = https://github.com/chrippa/ds4drv
+[submodule "submodules/i2c-linux"]
+	path = submodules/i2c-linux
+	url = https://github.com/charles-r-earp/i2c-linux
