@@ -65,8 +65,8 @@ struct ai_rc_car {
     void update() {
         std::cout << "Update " << currentDateTime() << std::endl;
         input::control_input inputs = this->input_manager.get();
-        this->controller.drive(inputs.drive_ratio);
-        this->controller.steer(inputs.steer_ratio);
+        //this->controller.drive(inputs.drive_ratio);
+        //this->controller.steer(inputs.steer_ratio);
     }
     
 };
