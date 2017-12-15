@@ -23,11 +23,11 @@ struct joystick {
     int file;
     
     struct js_event {
-		unsigned int time;     /* event timestamp in milliseconds */
-        short value; /* value */
-		unsigned char type;      /* event type */
-		unsigned char number;    /* axis/button number */
-	};
+      unsigned int time;     /* event timestamp in milliseconds */
+      short value; /* value */
+      unsigned char type;      /* event type */
+      unsigned char number;    /* axis/button number */
+    };
     
     struct event {
         
