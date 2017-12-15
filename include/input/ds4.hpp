@@ -54,76 +54,58 @@ struct ds4 {
     
     trigger L2, R2;
     
-    ds4() : controller(0, false) {
-        //std::cout << "ds4()" << std::endl;
-        
-        // creates /dev/input/joy1
-        this->ds4drv_thread = std::thread([](){ system("ds4drv"); });
-
-        
-        this->update_thread = std::thread([this](){
-            
-            while(!this->controller.ready()) {
-                std::this_thread::sleep_for (std::chrono::seconds(1));
-            }
-            
-            std::cout << "starting controller update..." << std::endl;
-            
-            while (true) {
-                
-                for (auto& event : this->controller.get_events()) {
-                    //std::cout << "read event" << std::endl;
-                    
-                    switch (event.type) {
-                        case joystick::event::Type::Button:
-                            switch (event.number) {
-                                case 0:
-                                    this->square.pressed = event.value;
-                                    break;
-                                case 1:
-                                    this->cross.pressed = event.value;
-                                    break;
-                                case 2:
-                                    this->circle.pressed = event.value;
-                                    break;
-                                case 3:
-                                    this->triangle.pressed = event.value;
-                                    break;
-                                case 4:
-                                    this->L1.pressed = event.value;
-                                    break;
-                                case 5:
-                                    this->R1.pressed = event.value;
-                                    break;
-                                case 6:
-                                    // L2
-                                    break;
-                                case 7:
-                                    // R2
-                                    break;
-                                case 8:
-                                    this->share.pressed = event.value;
-                                    break;
-                                case 9:
-                                    this->options.pressed = event.value;
-                                    break;
-                                case 10:
-                                    this->L3.pressed = event.value;
-                                    break;
-                                case 11:
-                                    this->R3.pressed = event.value;
-                                    break;
-                                case 12:
-                                    this->PS.pressed = event.value;
-                                    break;
-                                default:
-                                    break;
-                            }
-                            break;
-                        case joystick::event::Type::Axis:
-                            switch (event.number) {
-                                case 0:
-                                    this->left.x.set(event.value);
+    void update() {
+      for (auto& event : this->controller.get_events()) {
+        switch (event.type) {
+          case joystick::event::Type::Button:
+            switch (event.number) {
+            case 0:
+              this->square.pressed = event.value;
+              break;
+            case 1:
+              this->cross.pressed = event.value;
+              break;
+            case 2:
+              this->circle.pressed = event.value;
+              break;
+            case 3:
+              this->triangle.pressed = event.value;
+              break;
+            case 4:
+              this->L1.pressed = event.value;
+              break;
+            case 5:
+              this->R1.pressed = event.value;
+              break;
+            case 6:
+              // L2
+              break;
+            case 7:
+              // R2
+              break;
+            case 8:
+              this->share.pressed = event.value;
+              break;
+            case 9:
+              this->options.pressed = event.value;
+              break;
+            case 10:
+              this->L3.pressed = event.value;
+              break;
+            case 11:
+              this->R3.pressed = event.value;
+              break;
+            case 12:
+              this->PS.pressed = event.value;
+              break;
+            default:
+              break;
+          }
+          break;
+        case joystick::event::Type::Axis:
+          switch (event.number) {
+          case 0:
+            this->left.x.set(event.value);
                                     break;
                                 case 1:
                                     this->left.y.set(-event.value);
