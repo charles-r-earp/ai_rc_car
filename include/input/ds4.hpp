@@ -100,54 +100,47 @@ struct ds4 {
               break;
             default:
               break;
-          }
-          break;
+            }
+            break;
         case joystick::event::Type::Axis:
           switch (event.number) {
           case 0:
             this->left.x.set(event.value);
-                                    break;
-                                case 1:
-                                    this->left.y.set(-event.value);
-                                    break;
-                                case 2:
-                                    this->right.x.set(event.value);
-                                    break;
-                                case 3:
-                                    this->L2.set(event.value);
-                                    break;
-                                case 4:
-                                    this->R2.set(event.value);
-                                    break;
-                                case 5:
-                                    this->right.y.set(-event.value);
-                                    break;
-                                case 6:
-                                    this->digital.x.set(event.value);
-                                    break;
-                                case 7:
-                                case 8:
-                                case 9:
-                                case 10:
-                                case 11:
-                                    
-                                    break;
-                                case 12:
-                                    break;
-                                default:
-                                    break;
-                            }
-                            
-                        default:
-                            break;
-                    }
-                }
-
-                std::this_thread::sleep_for (std::chrono::milliseconds(1));
-            }
-            
-            
-        });
+            break;
+          case 1:
+            this->left.y.set(-event.value);
+            break;
+          case 2:
+            this->right.x.set(event.value);
+            break;
+          case 3:
+            this->L2.set(event.value);
+            break;
+          case 4:
+            this->R2.set(event.value);
+            break;
+          case 5:
+            this->right.y.set(-event.value);
+            break;
+          case 6:
+            this->digital.x.set(event.value);
+            break;
+          case 7:
+          case 8:
+          case 9:
+          case 10:
+          case 11:
+            break;
+          case 12:
+            break;
+          default:
+            break;
+        }
+           default:
+             break;
+        }
+      }
+      std::this_thread::sleep_for (std::chrono::milliseconds(1));
     }
 };
 
