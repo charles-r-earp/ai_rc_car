@@ -35,6 +35,7 @@ struct input {
         
         switch(this->state) {
             case State::Manual:
+                controller.update();
                 inputs.steer_ratio = this->controller.right.x.value;
                 if (this->controller.L2.value > 0.1) {
                     inputs.drive_ratio = -this->controller.L2.value; // brake
