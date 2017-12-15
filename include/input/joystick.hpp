@@ -82,7 +82,8 @@ struct joystick {
       std::vector<event> events;
       if(this->ready()) {  
         js_event next;
-        while (read(this->file, &next, sizeof(next)) > 0) {
+        int nevents = 0;
+        while ((nevents = read(this->file, &next, sizeof(next))) and events.size() < nevents) {
             std::cout << "nevents: " << read(this->file, &next, sizeof(next)) << std::endl;
             events.push_back(event(next));
         }
