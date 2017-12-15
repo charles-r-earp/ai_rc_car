@@ -80,9 +80,8 @@ struct joystick {
     }
     
     std::vector<event> get_events() {
-        
-        std::vector<event> events;
-        
+      std::vector<event> events;
+      if(this->ready()) {  
         js_event next;
         while (read(this->file, &next, sizeof(next)) > 0) {
             events.push_back(event(next));
@@ -91,8 +90,8 @@ struct joystick {
             std::cout << "get_events error: " << errno << std::endl;
             abort();
         }
-        
-        return events;
+      }  
+      return events;
     }
     
     ~joystick() {
