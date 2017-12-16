@@ -87,10 +87,7 @@ struct joystick {
             std::cout << "nevents: " << read(this->file, &next, sizeof(next)) << std::endl;
             events.push_back(event(next));
         }
-        if (errno != 0 and errno != EAGAIN) {
-            std::cout << "get_events error: " << errno << std::endl;
-            abort();
-        }
+        if(errno != 0) this->file = -1;
       }
       else {
          std::stringstream ss;
