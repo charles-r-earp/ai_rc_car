@@ -12,7 +12,7 @@ struct control {
     i2c_linux::pwm_driver pwm_driver;
     float steer_min = 0.34, steer_max = 0.56;
     bool steer_reversed = true;
-    float drive_min = -0.2, drive_max = 0.2;
+    float drive_min = -1, drive_max = 1;
     bool drive_reversed = false;
     
     control() : steering_servo(0), drive_motor(4) {
