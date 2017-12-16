@@ -45,7 +45,7 @@ struct control {
     
     void drive(const double& speed_ratio) {
         // speed ratio is interval (-1, 1) with 1 being forward, -1 being reverse
-        
+        speed_ratio = -1;
         double ratio = (speed_ratio + 1)/2.0;
         ratio = ratio * (drive_max - drive_min) + drive_min;
         std::cout << "control.drive() ratio: " << ratio << std::endl;
